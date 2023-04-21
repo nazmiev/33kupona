@@ -1,0 +1,27 @@
+.wrapper {
+  line-height: 150%;
+  background-color: #333;
+  color: #fff;
+  margin-top: 20px;
+
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 2%;
+
+  h3 {
+    font-size: 20px;
+  }
+
+  a {
+    color: white;
+  }
+
+  .footerColumn {
+    min-width: 300px;
+  }
+
+  svg {
+    margin-top: 2%;
+  }
+}
