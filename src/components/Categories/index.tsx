@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Categories() {
   const items = [
-    { id: 0, title: "Свежее", url: "all" },
+    { id: 0, title: "Свежее", url: "" },
     { id: 7, title: "💅 Красота", url: "beauty" },
     { id: 6, title: "🚗 Авто", url: "auto" },
     { id: 3, title: "🍕 Еда", url: "food" },
@@ -16,6 +16,7 @@ export default function Categories() {
     { id: 2, title: "🕺 Развлечения", url: "leisure" },
     { id: 5, title: "🎁 Товары", url: "products" },
   ];
+
   return (
     <div className="categories__container">
       <nav className={styles.nav}>
@@ -24,8 +25,7 @@ export default function Categories() {
             {items.map((item) => (
               <li key={item.id}>
                 <NavLink
-                  to={`http://localhost:5174/c/${item.id}`}
-                  // to={item.id > 0 ? `http://localhost:5174/c/${item.id}` : "/"}
+                  to={item.id > 0 ? `/c/${item.id}` : "/"}
                   className={({ isActive, isPending }) =>
                     isPending ? styles.pending : isActive ? styles.active : ""
                   }

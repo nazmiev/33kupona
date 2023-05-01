@@ -1,13 +1,11 @@
-import styles from "../components/Header/header.module.scss";
+import AuthHeader from "../components/AuthHeader";
+import LoginBlock from "../components/LoginBlock";
 
 export default function Login() {
   return (
-    <div className="login_container">
-      <div className={styles.menu}>
-        <div className={styles.item}>Войти</div>
-        <div className={styles.item}>Зарегистрироваться</div>
-        <div className={styles.item}>Забыли пароль?</div>
-      </div>
+    <div className="login__container">
+      <AuthHeader />
+      <LoginBlock />
     </div>
   );
 }

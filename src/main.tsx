@@ -27,6 +27,11 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Index />, loader: indexLoader },
       {
+        path: "c/:category_id",
+        element: <Category />,
+        loader: categoryLoader,
+      },
+      {
         path: "login",
         element: <Login />,
       },
@@ -54,11 +59,6 @@ const router = createBrowserRouter([
             // loader: commentsLoader,
           },
         ],
-      },
-      {
-        path: "c/:category_id",
-        element: <Category />,
-        loader: categoryLoader,
       },
     ],
   },

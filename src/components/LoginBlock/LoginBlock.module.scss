@@ -1,0 +1,36 @@
+.login {
+  margin: 3vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 49vw;
+  }
+  .btn {
+    padding: 1.5vh 2.5vw;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px #eee;
+    font-size: 14px;
+    font-family: "Open Sans", sans-serif;
+    cursor: pointer;
+    color: #333;
+    background: #666;
+    border: 1px solid #666;
+    text-decoration: none;
+  }
+  .active {
+    padding: 1.5vh 2.5vw;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px #eee;
+    font-size: 14px;
+    font-family: "Open Sans", sans-serif;
+    cursor: pointer;
+    color: #fff;
+    background: #16ba2d;
+    border: 1px solid #16ba2d;
+    text-decoration: none;
+  }
+}

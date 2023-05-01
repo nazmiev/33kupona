@@ -1,11 +1,11 @@
 import { useLoaderData, useNavigation } from "react-router-dom";
 import { getAllActions } from "../helpers";
-import Categories from "../components/Categories";
 import AkciyaBlock from "../components/AkciyaBlock";
 import Skeleton from "../components/AkciyaBlock/skeleton";
 import ActionType from "../assets/types/ActionType";
+import Categories from "../components/Categories";
 
-export default function Category() {
+export default function Index() {
   const navigation = useNavigation();
   const actions = useLoaderData() as ActionType[];
 
@@ -32,13 +32,13 @@ export default function Category() {
   );
 }
 
-export async function loader({ params }: any) {
-  const actions = await getAllActions(params.category_id);
+export async function loader() {
+  const actions = await getAllActions();
 
   if (!actions) {
     throw new Response("", {
       status: 404,
-      statusText: "Нет акций в категории",
+      statusText: "Нет акций",
     });
   }
   return actions;

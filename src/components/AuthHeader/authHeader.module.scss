@@ -1,0 +1,18 @@
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 1vw;
+  box-shadow: 0 5px 10px -4px #999999;
+  background: #dee;
+  font-size: 16px;
+  color: #333;
+  padding: 1vh 0;
+  .item {
+    font-size: calc(min(16px, 3.5vw));
+    padding: 1vh 3vw;
+    border-radius: 5%;
+    background: #fafbfb;
+    background-image: linear-gradient(to bottom, #ffffff 0, #f5f6f7 100%);
+    box-shadow: 0 1px 4px -1px #999;
+  }
+}

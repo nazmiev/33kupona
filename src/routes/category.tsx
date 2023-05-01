@@ -1,9 +1,9 @@
 import { useLoaderData, useNavigation } from "react-router-dom";
 import { getCategoryActions } from "../helpers";
-import Categories from "../components/Categories";
 import AkciyaBlock from "../components/AkciyaBlock";
 import Skeleton from "../components/AkciyaBlock/skeleton";
 import ActionType from "../assets/types/ActionType";
+import Categories from "../components/Categories";
 
 export default function Category() {
   const navigation = useNavigation();
