@@ -1,15 +1,28 @@
 import { useState, createContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "./header.module.scss";
+import { useSpring, animated } from "react-spring";
 
 const Header = () => {
   const AuthContext = createContext(false);
   const [open, setOpen] = useState(false);
   const [auth, setAuth] = useState(false);
 
+  const menu = useSpring({
+    // display: open ? "flex" : "none",
+    height: open ? 45 : 0,
+    padding: open ? 7 : 0,
+    from: { height: 0, padding: 0 },
+  });
+
+  const item = useSpring({
+    display: open ? "flex" : "none",
+    from: { display: !open ? "flex" : "none" },
+  });
+
   return (
     <AuthContext.Provider value={auth}>
-      <header className="header__container">
+      <header className="header">
         <div className={styles.wrapper}>
           <Link to="/">
             <svg xmlns="http://www.w3.org/2000/svg" width="182" height="40">
@@ -53,14 +66,28 @@ const Header = () => {
             </div>
           )}
         </div>
-        {open && (
+        <animated.div style={menu} className={styles.menu}>
+          <animated.div style={item} className={styles.item}>
+            профиль
+          </animated.div>
+          <animated.div style={item} className={styles.item}>
+            купоны
+          </animated.div>
+          <animated.div style={item} className={styles.item}>
+            акции
+          </animated.div>
+          <animated.div style={item} className={styles.item}>
+            выйти
+          </animated.div>
+        </animated.div>
+        {/* {open && (
           <div className={styles.menu}>
             <div className={styles.item}>профиль</div>
             <div className={styles.item}>купоны</div>
             <div className={styles.item}>акции</div>
             <div className={styles.item}>выйти</div>
           </div>
-        )}
+        )} */}
       </header>
     </AuthContext.Provider>
   );

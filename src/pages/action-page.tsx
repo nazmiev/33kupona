@@ -76,7 +76,6 @@ export default function ActionPage(action: any) {
           Отзывы (?)
         </NavLink>
         <div className={styles.spinner} />
-        {/* <div id="search-spinner" aria-hidden hidden={!searching} /> */}
       </div>
       <Outlet />
     </>

@@ -51,7 +51,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Description />,
-            // loader: descriptionLoader,
+            loader: descriptionLoader,
           },
           {
             path: ":comment_id/",

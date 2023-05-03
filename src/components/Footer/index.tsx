@@ -2,7 +2,7 @@ import styles from "./footer.module.scss";
 
 const Footer = () => {
   return (
-    <footer className="footer__container">
+    <footer className="footer">
       <div className={styles.wrapper}>
         <div className={styles.footerColumn}>
           <svg xmlns="http://www.w3.org/2000/svg" width="182" height="40">
