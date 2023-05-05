@@ -1,25 +1,25 @@
 import styles from "./authHeader.module.scss";
 import { NavLink } from "react-router-dom"
 
-const AuthHeader = () => {
+const LoginHeader = () => {
 
   return (
     <nav className={styles.menu}>
-      <NavLink to="/login" 
+      <NavLink to="/login/auth" 
         className={({ isActive, isPending }) =>
         isPending ? styles.pending
         : isActive ? styles.active 
         : styles.item}>
           Вход
       </NavLink>
-      <NavLink to="/register" className={({ isActive, isPending }) =>
+      <NavLink to="/login/register" className={({ isActive, isPending }) =>
         isPending ? styles.pending : isActive ? styles.active : "" + styles.item
       }>Регистрация</NavLink>
-      <NavLink to="/forgot_password" className={({ isActive, isPending }) =>
+      <NavLink to="/login/forget_password" className={({ isActive, isPending }) =>
         isPending ? styles.pending : isActive ? styles.active : "" + styles.item
       }>Забыли пароль?</NavLink>
     </nav>
   );
 };
 
-export default AuthHeader;
+export default LoginHeader;

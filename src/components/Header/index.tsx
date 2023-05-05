@@ -38,7 +38,7 @@ const Header = () => {
             </svg>
           </Link>
           {!auth ? (
-            <Link to="/login">
+            <Link to="/login/auth">
               <svg
                 onClick={() => setAuth(!auth)}
                 xmlns="http://www.w3.org/2000/svg"
