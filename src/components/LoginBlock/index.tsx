@@ -11,9 +11,7 @@ export default function LoginBlock() {
     const form = e.target;
     const formData = new FormData(form);
     // fetch("https://33kupona.ru/api", { method: form.method, body: formData });
-
     const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson);
   }
   return (
     <form className={styles.login} method="post" onSubmit={handleSubmit}>

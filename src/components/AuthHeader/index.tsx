@@ -1,15 +1,24 @@
-import { useState } from "react";
 import styles from "./authHeader.module.scss";
+import { NavLink } from "react-router-dom"
 
 const AuthHeader = () => {
-  const [auth, setAuth] = useState(false);
 
   return (
-    <div className={styles.menu}>
-      <div className={styles.item}>Войти</div>
-      <div className={styles.item}>Зарегистрироваться</div>
-      <div className={styles.item}>Забыли пароль?</div>
-    </div>
+    <nav className={styles.menu}>
+      <NavLink to="/login" 
+        className={({ isActive, isPending }) =>
+        isPending ? styles.pending
+        : isActive ? styles.active 
+        : styles.item}>
+          Вход
+      </NavLink>
+      <NavLink to="/register" className={({ isActive, isPending }) =>
+        isPending ? styles.pending : isActive ? styles.active : "" + styles.item
+      }>Регистрация</NavLink>
+      <NavLink to="/forgot_password" className={({ isActive, isPending }) =>
+        isPending ? styles.pending : isActive ? styles.active : "" + styles.item
+      }>Забыли пароль?</NavLink>
+    </nav>
   );
 };
 

@@ -33,14 +33,15 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <Login />,
+        element: <Login />
       },
+      { index: true, element: <Login /> },
       {
-        path: "register",
+        path: "login/register",
         element: <Register />,
       },
       {
-        path: "forget_password",
+        path: "/forgot_password",
         element: <ForgetPassword />,
       },
       {

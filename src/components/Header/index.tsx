@@ -9,7 +9,6 @@ const Header = () => {
   const [auth, setAuth] = useState(false);
 
   const menu = useSpring({
-    // display: open ? "flex" : "none",
     height: open ? 45 : 0,
     padding: open ? 7 : 0,
     from: { height: 0, padding: 0 },
@@ -22,7 +21,8 @@ const Header = () => {
 
   return (
     <AuthContext.Provider value={auth}>
-      <header className="header">
+      <header className={styles.header}>
+      <div className="header__container">
         <div className={styles.wrapper}>
           <Link to="/">
             <svg xmlns="http://www.w3.org/2000/svg" width="182" height="40">
@@ -44,7 +44,7 @@ const Header = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
-                fill="currentColor"
+                fill="white"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -80,14 +80,7 @@ const Header = () => {
             выйти
           </animated.div>
         </animated.div>
-        {/* {open && (
-          <div className={styles.menu}>
-            <div className={styles.item}>профиль</div>
-            <div className={styles.item}>купоны</div>
-            <div className={styles.item}>акции</div>
-            <div className={styles.item}>выйти</div>
-          </div>
-        )} */}
+        </div>
       </header>
     </AuthContext.Provider>
   );
