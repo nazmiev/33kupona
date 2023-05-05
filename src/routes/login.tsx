@@ -1,11 +1,11 @@
-import AuthHeader from "../components/AuthHeader";
-import LoginBlock from "../components/LoginBlock";
+import { Outlet } from "react-router-dom";
+import LoginHeader from "../components/LoginHeader";
 
 export default function Login() {
   return (
     <div className="login__container">
-      <AuthHeader />
-      <LoginBlock />
+      < LoginHeader />
+      < Outlet />
     </div>
   );
 }

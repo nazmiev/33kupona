@@ -1,27 +1,26 @@
-.wrapper {
-  line-height: 150%;
+.footer {
+  line-height: 170%;
   background-color: #333;
   color: #fff;
-  margin-top: 20px;
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 3vh 4vw;
+    gap: 2vh;
+    @media (min-width: 1100px) {
+      flex-direction: row;
+      padding: 3vh 0;
+    }
 
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  padding: 2%;
+    h3 {
+      font-size: 20px;
+    }
 
-  h3 {
-    font-size: 20px;
-  }
-
-  a {
-    color: white;
-  }
-
-  .footerColumn {
-    min-width: 300px;
-  }
-
-  svg {
-    margin-top: 2%;
+    a {
+      color: #999;
+      text-decoration: underline #555;
+    }
   }
 }

@@ -12,6 +12,7 @@ import Action, { loader as actionLoader } from "./routes/action";
 import Comments, { loader as commentsLoader } from "./routes/comments";
 import Description, { loader as descriptionLoader } from "./routes/description";
 import Offers, { loader as offersLoader } from "./routes/offers";
+import Auth from "./routes/auth";
 import Login from "./routes/login";
 import Register from "./routes/register";
 import ForgetPassword from "./routes/forget-password";
@@ -36,14 +37,11 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
-      },
-      {
-        path: "register",
-        element: <Register />,
-      },
-      {
-        path: "forget_password",
-        element: <ForgetPassword />,
+        children: [
+          { path: "auth", element: <Auth />, },
+          { path: "register", element: <Register />, },
+          { path: "forget_password", element: <ForgetPassword />, },
+        ]
       },
       {
         path: "tomsk/:action_id",
