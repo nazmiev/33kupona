@@ -1,20 +1,23 @@
 import styles from "./LoginBlock.module.scss";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { redirect } from "react-router-dom";
+import { setAuth } from "../../redux/slices/authSlice";
 
 export default function LoginBlock() {
+  const isAuth = useSelector((state: any) => state.auth.isAuth);
+  const dispatch = useDispatch();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    // fetch("https://33kupona.ru/api", { method: form.method, body: formData });
-    const formJson = Object.fromEntries(formData.entries());
+    console.log("submit");
+    dispatch(setAuth(true));
+    return redirect("/");
   }
   return (
-    <form className={styles.login} method="post" onSubmit={handleSubmit}>
+    <form className={styles.login} onSubmit={handleSubmit} action="/">
       <div className={styles.row}>
         <label htmlFor="myInput">Email:</label>
         <input
@@ -42,12 +45,12 @@ export default function LoginBlock() {
           defaultChecked={true}
         />
       </div>
-      <Link
+      <button
+        type="submit"
         className={login && password ? styles.active : styles.btn}
-        to={login && password ? "/" : "#"}
       >
         Войти
-      </Link>
+      </button>
     </form>
   );
 }
