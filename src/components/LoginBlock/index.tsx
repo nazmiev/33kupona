@@ -11,7 +11,7 @@ export default function LoginBlock() {
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    console.log("submit");
+    console.warn("submit");
     // dispatch(setAuth(true));
     return redirect("/");
   }

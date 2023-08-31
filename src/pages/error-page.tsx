@@ -13,7 +13,7 @@ const errorCheck = (error: any): error is ErrorResponse => {
 
 export default function ErrorPage() {
   const error: any = useRouteError();
-  console.log(error);
+  console.error(error);
 
   if (errorCheck(error)) {
     return (

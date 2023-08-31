@@ -41,7 +41,6 @@ const router = createBrowserRouter([
         ]
       },
       {
-        // path: "tomsk/:action_id",
         path: "tomsk/:partner_url/:action_id",
         element: <Action />,
         loader: actionLoader,
@@ -49,7 +48,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Description />,
-            // loader: descriptionLoader,
+            loader: descriptionLoader,
           },
           {
             path: ":comment_id/",

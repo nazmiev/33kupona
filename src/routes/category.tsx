@@ -1,5 +1,5 @@
 import { useLoaderData, useNavigation } from "react-router-dom";
-import { getCategoryActions } from "../helpers";
+import { getAllActions, getCategoryActions } from "../helpers";
 import AkciyaBlock from "../components/AkciyaBlock";
 import Skeleton from "../components/AkciyaBlock/skeleton";
 import ActionType from "../assets/types/ActionType";
@@ -33,7 +33,13 @@ export default function Category() {
 }
 
 export async function loader({ params }: any) {
-  const actions = await getCategoryActions(params.category_id);
+  // const actions = await getCategoryActions(params.category_id);
+  console.log("params.category_id: ", params.category_id);  
+  const actions = await getAllActions();
+  console.log("category actions: ", actions);  
+
+  
+
 
   if (!actions) {
     throw new Response("", {

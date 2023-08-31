@@ -3,7 +3,6 @@ import json from './assets/offers.json'
 export async function getAction(url: string) {
   let response = await fetch(`https://33kupona.ru/tomsk/${url}?format=json`);
   let json = await response.json();
-  console.log('json: ', json);
   return json.action ?? null;
 }
 
