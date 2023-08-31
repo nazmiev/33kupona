@@ -1,8 +1,5 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { store } from "./redux/store";
-import { Provider } from "react-redux";
 import "./index.css";
 import ErrorPage from "./pages/error-page";
 import Root from "./routes/root";
@@ -44,14 +41,15 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: "tomsk/:action_id",
+        // path: "tomsk/:action_id",
+        path: "tomsk/:partner_url/:action_id",
         element: <Action />,
         loader: actionLoader,
         children: [
           {
             index: true,
             element: <Description />,
-            loader: descriptionLoader,
+            // loader: descriptionLoader,
           },
           {
             path: ":comment_id/",
@@ -65,7 +63,5 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <Provider store={store}>
-    <RouterProvider router={router} />
-  </Provider>
+  <RouterProvider router={router} />
 );

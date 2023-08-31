@@ -9,7 +9,7 @@ export default function Description() {
 }
 
 export async function loader({ params }: any) {
-  const action = await getAction(params.action_id);
+  const action = await getAction(`${params.partner_url}/${params.action_id}`);
 
   if (!action) {
     throw new Response("", {

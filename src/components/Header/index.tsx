@@ -2,16 +2,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./header.module.scss";
 import { useSpring, animated } from "react-spring";
-import { useDispatch, useSelector } from "react-redux";
-import { setAuth } from "../../redux/slices/authSlice";
+// import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
-  const dispatch = useDispatch();
-  const isAuth = useSelector((state: any) => state.auth.isAuth);
+  // const dispatch = useDispatch();
+  // const isAuth = useSelector((state: any) => state.auth.isAuth);
   const [open, setOpen] = useState(false);
 
   const onClickLogout = () => {
-    dispatch(setAuth(false));
+    // dispatch(setAuth(false));
     setOpen(false);
   };
 
@@ -43,7 +42,8 @@ const Header = () => {
               </g>
             </svg>
           </Link>
-          {!isAuth ? (
+          {/* {!isAuth ? ( */}
+          {true ? (
             <Link to="/login/auth">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

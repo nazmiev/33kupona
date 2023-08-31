@@ -1,19 +1,18 @@
 import styles from "./LoginBlock.module.scss";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import { redirect } from "react-router-dom";
-import { setAuth } from "../../redux/slices/authSlice";
 
 export default function LoginBlock() {
-  const isAuth = useSelector((state: any) => state.auth.isAuth);
-  const dispatch = useDispatch();
+  // const isAuth = useSelector((state: any) => state.auth.isAuth);
+  // const dispatch = useDispatch();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
   function handleSubmit(e: any) {
     e.preventDefault();
     console.log("submit");
-    dispatch(setAuth(true));
+    // dispatch(setAuth(true));
     return redirect("/");
   }
   return (
