@@ -1,0 +1,13 @@
+.comment {
+  padding: 10px;
+  border: 1px solid green;
+}
+
+.children {
+  padding-left: 20px;
+  border: 1px solid red;
+}
+
+.children .children .children .children {
+  padding-left: 0px;
+}

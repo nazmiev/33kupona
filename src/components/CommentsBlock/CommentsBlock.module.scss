@@ -1,17 +1,10 @@
 .comments {
   max-width: 1300px;
   margin: 0 auto;
-}
-.comment {
-  padding: 10px;
-  border: 1px solid green;
-  
-  .children {
-    padding-left:20px;
-    border: 1px solid red;
-  }
-}
-
-.children .children .children .children {
-    padding-left: 0px;
+  max-width: 84rem;
+  max-width: calc(min(84rem, 100%));
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  margin: 0 auto;
+  padding: 0 10px;
 }
