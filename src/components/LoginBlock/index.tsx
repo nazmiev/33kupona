@@ -18,7 +18,7 @@ export default function LoginBlock() {
   return (
     <form className={styles.login} onSubmit={handleSubmit} action="/">
       <div className={styles.row}>
-        <label htmlFor="myInput">Email:</label>
+        <label htmlFor="myInput">Email:</label><br/>
         <input
           id="myInput"
           name="myInput"
@@ -27,7 +27,7 @@ export default function LoginBlock() {
         />
       </div>
       <div className={styles.row}>
-        <label htmlFor="password">Пароль:</label>
+        <label htmlFor="password">Пароль:</label><br/>
         <input
           id="password"
           name="password"
@@ -44,10 +44,7 @@ export default function LoginBlock() {
           defaultChecked={true}
         />
       </div>
-      <button
-        type="submit"
-        className={login && password ? styles.active : styles.btn}
-      >
+      <button disabled={!(login && password)} type="submit">
         Войти
       </button>
     </form>
