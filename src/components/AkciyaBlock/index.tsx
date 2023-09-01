@@ -3,7 +3,7 @@ import styles from "./akciyaBlock.module.scss";
 import { Link } from "react-router-dom";
 
 type AkciyaBlockProps = {
-  title: string,
+  name: string,
   image_big: string,
   url: string,
   coupon_sold: string,
@@ -12,20 +12,16 @@ type AkciyaBlockProps = {
   left: number,
 }
 
-function AkciyaBlock({ title, image_big, url, coupon_sold, comment_count, discount, left }: AkciyaBlockProps) {
+function AkciyaBlock({ name, image_big, url, coupon_sold, comment_count, discount, left }: AkciyaBlockProps) {
   return (
-    <section className={styles.AkciyaBlock}>
+    <section className={styles.AkciyaBlock} onClick={() => {location.href = `${url}`}}>
       <div className={styles.imgContainer}>
-        <Link to={url}>
-          <img src={image_big} alt={title} />
-        </Link>
+          <img src={image_big} alt={name} />
         <div className={styles.greenLabel}>
           <span>{discount}%</span>
         </div>
       </div>
-      <Link to={url}>
-        <h3>{title}</h3>
-      </Link>
+        <h3>{name}</h3>
       <div className={styles.details}>
         <div className={styles.info}>
           <div>
