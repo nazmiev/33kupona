@@ -1,9 +1,13 @@
-import json from './assets/offers.json'
-
 export async function getAction(url: string) {
   let response = await fetch(`https://33kupona.ru/tomsk/${url}?format=json`);
   let json = await response.json();
   return json.action ?? null;
+}
+
+export async function getComments(url: string) {
+  let response = await fetch(`https://33kupona.ru/tomsk/${url}/comment?format=json`);
+  let json = await response.json();
+  return json.comments ?? [];
 }
 
 export async function getCategoryActions(categoryId: number) {
@@ -19,19 +23,8 @@ export async function getAllActions() {
   return actions;
 }
 
-export async function getOffers(id: number) {
-  const offers = json.filter(word => word.id == id)[0].offers;
-  return offers ?? null;
-}
-
 /**
  * Множественное число для русских слов
- *
- * @param {*} number
- * @param {*} one
- * @param {*} two
- * @param {*} five
- * @returns
  */
 export const pluralizeRus = function (number: number | string, one: string, two: string, five: string) {
   number = Math.abs(number as number) % 100;

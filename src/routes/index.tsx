@@ -3,7 +3,7 @@ import { getAllActions } from "../helpers";
 import AkciyaBlock from "../components/AkciyaBlock";
 import Skeleton from "../components/AkciyaBlock/skeleton";
 import ActionType from "../assets/types/ActionType";
-import Categories from "../components/Categories";
+// import Categories from "../components/Categories";
 
 export default function Index() {
   const navigation = useNavigation();
@@ -16,7 +16,7 @@ export default function Index() {
 
   return (
     <>
-      <Categories />
+      {/* <Categories /> */}
       <div className="main__container">
         {actions.length ? (
           navigation.state === "loading" ? (

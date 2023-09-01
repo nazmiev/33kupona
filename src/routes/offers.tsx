@@ -1,5 +1,4 @@
 import { useLoaderData } from "react-router-dom";
-import { getOffers } from "../helpers";
 import ActionType from "../assets/types/ActionType";
 import OffersBlock from "../components/OffersBlock";
 
@@ -9,13 +8,13 @@ export default function Offers() {
 }
 
 export async function loader({ params }: any) {
-  const action = await getOffers(params.action_id);
+  // const action = await getOffers(params.action_id);
 
-  if (!action) {
-    throw new Response("", {
-      status: 404,
-      statusText: "Not Found",
-    });
-  }
-  return action;
+  // if (!action) {
+  //   throw new Response("", {
+  //     status: 404,
+  //     statusText: "Not Found",
+  //   });
+  // }
+  // return action;
 }

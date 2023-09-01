@@ -1,9 +1,17 @@
 .comments {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 25vh;
-  color: white;
-  background-color: gray;
-  font-size: x-large;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.comment {
+  padding: 10px;
+  border: 1px solid green;
+  
+  .children {
+    padding-left:20px;
+    border: 1px solid red;
+  }
+}
+
+.children .children .children .children {
+    padding-left: 0px;
 }

@@ -25,7 +25,35 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Index />, loader: indexLoader },
+      { 
+        index: true, 
+        element: <Index />, 
+        loader: indexLoader,
+      },
+      { 
+        path: "tomsk/", 
+        // element: <Index />, 
+        // loader: indexLoader,
+        children: [
+          {
+            path: ":partner_url/:action_id",
+            element: <Action />,
+            loader: actionLoader,
+            children: [
+              {
+                index: true,
+                element: <Description />,
+                loader: descriptionLoader,
+              },
+              {
+                path: "comment",
+                element: <Comments />,
+                loader: commentsLoader,
+              },
+            ],
+          },
+        ]
+      },
       {
         path: "c/:category_id",
         element: <Category />,
@@ -39,24 +67,7 @@ const router = createBrowserRouter([
           { path: "register", element: <Register />, },
           { path: "forget_password", element: <ForgetPassword />, },
         ]
-      },
-      {
-        path: "tomsk/:partner_url/:action_id",
-        element: <Action />,
-        loader: actionLoader,
-        children: [
-          {
-            index: true,
-            element: <Description />,
-            loader: descriptionLoader,
-          },
-          {
-            path: ":comment_id/",
-            element: <Comments />,
-            // loader: commentsLoader,
-          },
-        ],
-      },
+      }
     ],
   },
 ]);

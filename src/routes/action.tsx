@@ -10,7 +10,6 @@ export default function Action() {
 
 export async function loader({ params }: any) {
   const action = await getAction(`${params.partner_url}/${params.action_id}`);
-  console.log('action: ', action);
 
   if (!action) {
     throw new Response("", {

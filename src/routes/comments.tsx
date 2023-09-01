@@ -1,21 +1,30 @@
 import { useLoaderData } from "react-router-dom";
-import { getAction } from "../helpers";
+import { getAction, getComments } from "../helpers";
 import ActionType from "../assets/types/ActionType";
 import CommentsBlock from "../components/CommentsBlock";
+import styles from "../components/CommentsBlock/CommentsBlock.module.scss";
 
 export default function Comments() {
-  const action = useLoaderData() as ActionType;
-  return <CommentsBlock action={action} />;
+  const comments = useLoaderData() as any;
+  return (<div>
+    {/* <CommentForm /> */}
+    <div className={styles.comments}>
+      {comments.map((comment:any) => <CommentsBlock key={comment.id} comment={comment} depth={0} />)}
+    </div>
+  </div>
+  );
 }
 
 export async function loader({ params }: any) {
-  const action = await getAction(params.action_id);
+  const comments = await getComments(`${params.partner_url}/${params.action_id}`);
+  console.log('loader comments: ', comments);
+  
 
-  if (!action) {
+  if (!comments) {
     throw new Response("", {
       status: 404,
       statusText: "Not Found",
     });
   }
-  return action;
+  return comments;
 }

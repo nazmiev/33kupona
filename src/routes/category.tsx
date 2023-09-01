@@ -33,13 +33,7 @@ export default function Category() {
 }
 
 export async function loader({ params }: any) {
-  // const actions = await getCategoryActions(params.category_id);
-  console.log("params.category_id: ", params.category_id);  
   const actions = await getAllActions();
-  console.log("category actions: ", actions);  
-
-  
-
 
   if (!actions) {
     throw new Response("", {
