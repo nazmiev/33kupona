@@ -1,7 +1,8 @@
 .comment {
   padding: 10px;
-  border: 1px solid green;
   display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
   @media (max-width: 620px) {
     flex-direction: column;
   }
@@ -29,11 +30,36 @@
       width: 160px;
     }
   }
+  .controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    button{
+      padding: 5px 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-shadow: 0 1px 1px #eee;
+      color: #888;
+      background: #fff;
+      font-family: 'Open Sans',sans-serif;
+    }
+    span {
+      width: 20px;
+      height: 20px;
+      text-align: center;
+    }
+    span:nth-child(2n+1){
+      background-color: #eee;
+    }
+    .negative {
+      color: #b72b2b;
+    }
+  }
 }
 
 .children {
   padding-left: 20px;
-  border: 1px solid red;
 }
 
 .children .children .children .children {

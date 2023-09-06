@@ -20,11 +20,20 @@ export default function Comment({ comment, depth }: any) {
       </div>
 
       {comment.published&&(<p>{comment.html}</p>)}
-      {comment.comments.length&&(
+      {comment.published&&
+      (<section className={styles.controls}>
+        <button>Ответить</button>
+        <button>Удалить</button>
+        <span>+</span>
+        <span className={comment.rating < 0 ? styles.negative : ''}>{comment.rating}</span>
+        <span>-</span>
+      </section>)}
+
+      {comment.comments.length ? (
         <div className={styles.children}>
           {comment.comments.map((comment: any) => <Comment key={comment.id} comment={comment} depth={1 + depth} />)}
         </div>
-      )}
+      ): <></>}
     </div>
   );
 }
