@@ -1,11 +1,8 @@
 .comment {
   padding: 10px;
   display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-  @media (max-width: 620px) {
-    flex-direction: column;
-  }
+  flex-direction: column;
+  gap: 2vh;
   .header {
     display: flex;
     gap: 10px;
