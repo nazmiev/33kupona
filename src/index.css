@@ -1,10 +1,7 @@
 [class*="__container"] {
-  max-width: 84rem;
-  max-width: calc(min(84rem, 100%));
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
+  max-width: calc(min(920px, 100%));
+  box-sizing: border-box;
   margin: 0 auto;
-  /* padding: 0 10px; */
 }
 
 .main__container {

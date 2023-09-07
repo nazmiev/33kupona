@@ -11,14 +11,13 @@ export default function Categories() {
     { id: 13, title: "🎄 Новый год", url: "noviy_god" },
     { id: 14, title: "❤ 14 февраля", url: "podarki_k_14_fevralya" },
     { id: 25, title: "1 сентября 📚", url: "1sentyabrya" },
-    { id: 21, title: "🎖 23 февраля", url: "podarki_k_23fevralya" },
     { id: 11, title: "🌹 8 Марта", url: "march" },
     { id: 2, title: "🕺 Развлечения", url: "leisure" },
     { id: 5, title: "🎁 Товары", url: "products" },
   ];
 
   return (
-    <div className="categories__container">
+    <div>
       <nav className={styles.nav}>
         {items.length ? (
           <ul>

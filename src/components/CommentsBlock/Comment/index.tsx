@@ -19,15 +19,14 @@ export default function Comment({ comment, depth }: any) {
         </div>
       </div>
 
-      {comment.published&&(<p>{comment.html}</p>)}
-      {comment.published&&
-      (<section className={styles.controls}>
+      {comment.published ? (<p>{comment.html}</p>) : <p className={styles.deleted}>Комментарий удалён</p>}
+      <section className={styles.controls}>
         <button>Ответить</button>
         <button>Удалить</button>
         <span>+</span>
         <span className={comment.rating < 0 ? styles.negative : ''}>{comment.rating}</span>
         <span>-</span>
-      </section>)}
+      </section>
 
       {comment.comments.length ? (
         <div className={styles.children}>
