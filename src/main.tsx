@@ -13,25 +13,33 @@ import Auth from "./routes/auth";
 import Login from "./routes/login";
 import Register from "./routes/register";
 import ForgetPassword from "./routes/forget-password";
+import { LoginProvider } from "./LoginContext";
+import Orders from "./routes/orders";
+// import Orders, { loader as ordersLoader }  from "./routes/orders";
 
 const router = createBrowserRouter([
-  {
-    path: "pay/:action_id",
-    element: <Offers />,
-    loader: offersLoader,
-  },
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      { 
-        index: true, 
-        element: <Index />, 
+      {
+        index: true,
+        element: <Index />,
         loader: indexLoader,
       },
-      { 
-        path: "tomsk/", 
+      {
+        path: "refine/:action_id",
+        element: <Offers />,
+        loader: offersLoader,
+      },
+      {
+        path: "pay",
+        element: <Orders />,
+        // loader: ordersLoader,
+      },
+      {
+        path: "tomsk/",
         // element: <Index />, 
         // loader: indexLoader,
         children: [
@@ -73,5 +81,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <RouterProvider router={router} />
+  <LoginProvider>
+    <RouterProvider router={router} />
+  </LoginProvider>
 );

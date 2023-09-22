@@ -1,6 +1,10 @@
 .description {
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  article {
+    padding: 10px;
+  }
   h2 {
     color: #333;
     margin: 15px 0;

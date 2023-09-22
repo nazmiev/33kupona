@@ -1,19 +1,27 @@
 import styles from "./LoginBlock.module.scss";
-import { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-import { redirect } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { getUser, postAuth } from "../../helpers";
+import { LoginDispatchContext } from "../../LoginContext";
 
 export default function LoginBlock() {
-  // const isAuth = useSelector((state: any) => state.auth.isAuth);
-  // const dispatch = useDispatch();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(true);
+  let params = useLocation()
+  
+  const dispatch = useContext(LoginDispatchContext);
+  const navigate = useNavigate();
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    console.warn("submit");
-    // dispatch(setAuth(true));
-    return redirect("/");
+    (async() => {
+      const json = await postAuth(login, password, true);
+      if (json.success) {
+        dispatch({type: "login"});
+        params.search ? navigate(`/refine/${params.search.substring(1)}`) : navigate("/");
+      }
+    })();
   }
   return (
     <form className={styles.login} onSubmit={handleSubmit} action="/">
@@ -41,7 +49,8 @@ export default function LoginBlock() {
           id="myCheckbox"
           type="checkbox"
           name="myCheckbox"
-          defaultChecked={true}
+          checked={remember}
+          onChange={(e) => setRemember(e.target.checked)}
         />
       </div>
       <button disabled={!(login && password)} type="submit">

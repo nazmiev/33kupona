@@ -1,10 +1,15 @@
 import styles from "./action-page.module.scss";
 import { pluralizeRus, secondsToDh } from "../helpers";
 import { NavLink, Link, Outlet } from "react-router-dom";
+import Categories from "../components/Categories";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function ActionPage(action: any) {
   return (
     <>
+      <Header />
+      <Categories />
       <div className={`action__container ${styles.offerTop}`}>
         <img src={action.action.image_big || null} alt={action.action.name} />
         <div className={styles.offerTop_description}>
@@ -57,7 +62,7 @@ export default function ActionPage(action: any) {
                   {/* <Link to="/">Отзывы ({action.action.comment_count ? action.action.comment_count : 0})</Link> */}
                 </div>
               </div>
-              <NavLink to={`/pay/${action.action.id}`}>
+              <NavLink to={`/refine/${action.action.id}`}>
                 <button>Купить</button>
               </NavLink>
             </div>
@@ -85,6 +90,7 @@ export default function ActionPage(action: any) {
         <div className={styles.spinner} />
       </div>
       <Outlet />
+      <Footer />
     </>
   );
 }

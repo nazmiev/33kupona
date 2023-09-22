@@ -2,7 +2,6 @@ import Comment from "./Comment";
 import styles from "./CommentsBlock.module.scss";
 
 export default function CommentsBlock({ comments, depth }: any) {
-  console.log('comments: ', comments);
   return (
     <>
       <div>

@@ -1,9 +1,10 @@
 .nav {
   overflow-y: hidden;
-  padding: 0 10px;
-  margin-top: 10px;
+  padding: 10px 10px 0;
+  // margin-top: 10px;
   white-space: nowrap;
   overflow-x: auto;
+  background-color: #fff;
 
   ul {
     padding: 0;

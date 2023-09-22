@@ -2,7 +2,6 @@ import styles from "./Comment.module.scss";
 
 export default function Comment({ comment, depth }: any) {
   const commentNoAvatarColors = ['#DD48A2','#4785DC','#EFD428','#1DBB2F','#3A3A3A'];
-  console.log('comment: ', );
 
   return (
     <div className={styles.comment}>

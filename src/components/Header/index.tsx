@@ -1,17 +1,21 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useReducer, useState } from "react";
+import { LoginContext, LoginDispatchContext, useLogin } from "../../LoginContext";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./header.module.scss";
 import { useSpring, animated } from "react-spring";
-// import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../helpers";
 
 const Header = () => {
-  // const dispatch = useDispatch();
-  // const isAuth = useSelector((state: any) => state.auth.isAuth);
   const [open, setOpen] = useState(false);
+  const isLogin = useLogin();
+  const dispatch = useContext(LoginDispatchContext);
+  const navigate = useNavigate();
 
   const onClickLogout = () => {
-    // dispatch(setAuth(false));
+    sessionStorage.setItem('vrb', '');
+    dispatch({type: "logout"});
     setOpen(false);
+    navigate("/");
   };
 
   const menu = useSpring({
@@ -43,7 +47,7 @@ const Header = () => {
             </svg>
           </Link>
           {/* {!isAuth ? ( */}
-          {true ? (
+          {!isLogin ? (
             <Link to="/login/auth">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

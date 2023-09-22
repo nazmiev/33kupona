@@ -3,6 +3,9 @@ import { getAllActions } from "../helpers";
 import AkciyaBlock from "../components/AkciyaBlock";
 import Skeleton from "../components/AkciyaBlock/skeleton";
 import ActionType from "../assets/types/ActionType";
+import Header from "../components/Header";
+import Categories from "../components/Categories";
+import Footer from "../components/Footer";
 // import Categories from "../components/Categories";
 
 export default function Index() {
@@ -16,7 +19,8 @@ export default function Index() {
 
   return (
     <>
-      {/* <Categories /> */}
+      <Header />
+      <Categories />
       <div className="main__container">
         {actions.length ? (
           navigation.state === "loading" ? (
@@ -28,6 +32,7 @@ export default function Index() {
           <h1>нет акций в категории</h1>
         )}
       </div>
+      <Footer />
     </>
   );
 }

@@ -1,31 +1,57 @@
 import styles from "./OffersBlock.module.scss";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { useLogin } from "../../LoginContext";
+import { createInvoice } from "../../helpers";
 
 export default function OffersBlock(offers: any) {
+  let location = useLocation();
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
   };
+  const isLogin = useLogin();
 
   const initialCounters = offers.offers.map((el: any) => {
-    return (el = { ...el, value: 0, sum: 0 });
+    return (el = { ...el, sum: el.price * el.count });
   });
 
   const [counts, setCounts] = useState(initialCounters);
+  
+
+  // count[17159]: 2
 
   const minus = (id: number) => {
     const updatedCounts = counts.map((el: any) =>
-      el.id === id ? { ...el, value: el.value - 1, sum: el.sum - el.price } : el
+      el.id === id ? { ...el, count: el.count - 1, sum: el.price * (el.count-1) } : el
     );
     setCounts(updatedCounts);
   };
 
   const plus = (id: number) => {
     const updatedCounts = counts.map((el: any) =>
-      el.id === id ? { ...el, value: el.value + 1, sum: el.sum + el.price } : el
+      el.id === id ? { ...el, count: el.count + 1, sum: el.price * (el.count+1) } : el
     );
     setCounts(updatedCounts);
+  };
+
+  const handleClick = async () => {
+    if (!isLogin) {
+      return navigate(`/login/auth?${location.pathname.split('/')[location.pathname.split('/').length - 1]}`, {
+        state: {
+          counts
+        }
+      });
+    }
+
+    const invoice = await createInvoice(counts);
+    if (invoice.id) {
+      navigate("/pay", {
+        state: {
+          invoice
+        }
+      })
+    }
   };
 
   return (
@@ -47,7 +73,7 @@ export default function OffersBlock(offers: any) {
       </div>
       <div className={styles.steps}>
         <div className={`${styles.active} ${styles.step}`}>Купоны</div>
-        <div className={styles.step}>Вход</div>
+        {!isLogin && <div className={styles.step}>Вход</div>}
         <div className={styles.step}>Оплата</div>
         <div className={styles.step}>Готово!</div>
       </div>
@@ -58,7 +84,8 @@ export default function OffersBlock(offers: any) {
           <div className={styles.offersList}>
             {counts.map((offer: any) => (
               <div className={styles.offersListItem} key={offer.id}>
-                <div>{offer.title}</div>
+                <div>{offer.name}</div>
+                <div><img src={offer.image}/></div>
                 <div className={styles.offersListItemOrder}>
                   <div>
                     <div>{offer.price} ₽</div>
@@ -76,7 +103,7 @@ export default function OffersBlock(offers: any) {
                     >
                       <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6 7.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1 0-1z" />
                     </svg>
-                    {offer.value}
+                    {offer.count}
                     <svg
                       className={styles.active}
                       onClick={() => plus(offer.id)}
@@ -110,7 +137,10 @@ export default function OffersBlock(offers: any) {
             <Link to="/disclaimer">33kupona.ru/disclaimer</Link> и безоговорочно
             принимаю все его условия
           </p>
-          <button>Продолжить</button>
+          <button 
+            disabled={counts.reduce(function (acc: number ,obj: any) { return acc + obj.sum}, 0) == 0}
+            onClick={() => handleClick()}
+            >Продолжить</button>
         </div>
       </div>
     </div>

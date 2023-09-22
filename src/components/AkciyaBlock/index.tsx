@@ -1,6 +1,6 @@
 import { pluralizeRus, secondsToDh } from "../../helpers";
 import styles from "./akciyaBlock.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type AkciyaBlockProps = {
   name: string,
@@ -13,8 +13,10 @@ type AkciyaBlockProps = {
 }
 
 function AkciyaBlock({ name, image_big, url, coupon_sold, comment_count, discount, left }: AkciyaBlockProps) {
+  const navigate = useNavigate();
+
   return (
-    <section className={styles.AkciyaBlock} onClick={() => {location.href = `${url}`}}>
+    <section className={styles.AkciyaBlock} onClick={() => {navigate(url)}}>
       <div className={styles.imgContainer}>
           <img src={image_big} alt={name} />
         <div className={styles.greenLabel}>
