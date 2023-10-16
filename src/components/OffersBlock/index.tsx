@@ -1,7 +1,7 @@
 import styles from "./OffersBlock.module.scss";
 import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { useLogin } from "../../LoginContext";
+// import { useLogin } from "../../LoginContext";
 import { createInvoice } from "../../helpers";
 
 export default function OffersBlock(offers: any) {
@@ -10,7 +10,7 @@ export default function OffersBlock(offers: any) {
   const goBack = () => {
     navigate(-1);
   };
-  const isLogin = useLogin();
+  // const isLogin = useLogin();
 
   const initialCounters = offers.offers.map((el: any) => {
     return (el = { ...el, sum: el.price * el.count });
@@ -36,13 +36,13 @@ export default function OffersBlock(offers: any) {
   };
 
   const handleClick = async () => {
-    if (!isLogin) {
-      return navigate(`/login/auth?${location.pathname.split('/')[location.pathname.split('/').length - 1]}`, {
-        state: {
-          counts
-        }
-      });
-    }
+    // if (!isLogin) {
+    //   return navigate(`/login/auth?${location.pathname.split('/')[location.pathname.split('/').length - 1]}`, {
+    //     state: {
+    //       counts
+    //     }
+    //   });
+    // }
 
     const invoice = await createInvoice(counts);
     if (invoice.id) {
@@ -73,7 +73,7 @@ export default function OffersBlock(offers: any) {
       </div>
       <div className={styles.steps}>
         <div className={`${styles.active} ${styles.step}`}>Купоны</div>
-        {!isLogin && <div className={styles.step}>Вход</div>}
+        {/* {!isLogin && <div className={styles.step}>Вход</div>} */}
         <div className={styles.step}>Оплата</div>
         <div className={styles.step}>Готово!</div>
       </div>
