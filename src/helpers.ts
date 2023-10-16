@@ -41,12 +41,17 @@ export async function createInvoice(counts: any) {
     data['count[' + el.id + ']'] = el.count;
   })
 
+  console.log('createInvoice data: ', data);
+
   let response = await fetch('https://33kupona.ru/ajax/invoice?format=json', {
     method: "POST",
     headers: headers,
     body: new URLSearchParams(data),
   });
   let json = await response?.json();
+
+  console.log('createInvoice json: ', json);
+  
   return json;
 }
 

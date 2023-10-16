@@ -2,7 +2,7 @@ import styles from "./LoginBlock.module.scss";
 import { useContext, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getUser, postAuth } from "../../helpers";
-import { LoginDispatchContext } from "../../LoginContext";
+// import { LoginDispatchContext } from "../../LoginContext";
 
 export default function LoginBlock() {
   const [login, setLogin] = useState("");
@@ -10,7 +10,7 @@ export default function LoginBlock() {
   const [remember, setRemember] = useState(true);
   let params = useLocation()
   
-  const dispatch = useContext(LoginDispatchContext);
+  // const dispatch = useContext(LoginDispatchContext);
   const navigate = useNavigate();
 
   function handleSubmit(e: any) {
@@ -18,7 +18,7 @@ export default function LoginBlock() {
     (async() => {
       const json = await postAuth(login, password, true);
       if (json.success) {
-        dispatch({type: "login"});
+        // dispatch({type: "login"});
         params.search ? navigate(`/refine/${params.search.substring(1)}`) : navigate("/");
       }
     })();

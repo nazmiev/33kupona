@@ -13,8 +13,8 @@ import Auth from "./routes/auth";
 import Login from "./routes/login";
 import Register from "./routes/register";
 import ForgetPassword from "./routes/forget-password";
-import { LoginProvider } from "./LoginContext";
 import Orders from "./routes/orders";
+import AppStoreProvider from "./LoginContext";
 // import Orders, { loader as ordersLoader }  from "./routes/orders";
 
 const router = createBrowserRouter([
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <LoginProvider>
+  <AppStoreProvider>
     <RouterProvider router={router} />
-  </LoginProvider>
+  </AppStoreProvider>
 );

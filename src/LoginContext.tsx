@@ -1,48 +1,89 @@
-import { createContext, useContext, useReducer, type Dispatch } from 'react';
+import { createContext, useContext, useEffect } from "react";
 
-export const LoginContext = createContext(false);
+type ThemeType = "light" | "dark";
+type User = {}
 
-export type action =
-  | { type: "login"; }
-  | { type: "logout"; };
+type AppStoreType = {
+  // user: User | null;
+  theme: ThemeType;
+  setTheme: Function;
+}
 
-export const LoginDispatchContext = createContext<any>(null);
+const AppStore = createContext<AppStoreType>({
+  // user: null,
+  theme: "light",
+  setTheme: () => {},
+});
 
-export function LoginProvider({ children }:any) {
-  const [logged, dispatch] = useReducer(
-    loginReducer,
-    initialLoginState
-  );
+export const useAppStore = () => useContext(AppStore);
+
+import { useState } from "react";
+
+export default function AppStoreProvider ({children}: any) {
+  const [theme, setTheme] = useState<ThemeType>('light');
+
+  useEffect(() => {
+    //loadUser, setUser
+  });
+
+  const value = {
+    // user,
+    theme,
+    setTheme,
+  }
 
   return (
-    <LoginContext.Provider value={logged}>
-      <LoginDispatchContext.Provider value={dispatch}>
-        {children}
-      </LoginDispatchContext.Provider>
-    </LoginContext.Provider>
+    <AppStore.Provider value={value}>
+      {children}
+    </AppStore.Provider>
   );
-}
+};
 
-export function useLogin() {
-  return useContext(LoginContext);
-}
+// import { createContext, useContext, useReducer, type Dispatch } from 'react';
 
-export function useLoginDispatch() {
-  return useContext(LoginDispatchContext);
-}
+// export const LoginContext = createContext(false);
 
-function loginReducer(logged: boolean, action: any) {
-  switch (action.type) {
-    case 'login': {
-      return true;
-    }
-    case 'logout': {
-      return false;
-    }
-    default: {
-      throw Error('Unknown action: ' + action.type);
-    }
-  }
-}
+// export type action =
+//   | { type: "login"; }
+//   | { type: "logout"; };
 
-const initialLoginState = false;
+// export const LoginDispatchContext = createContext<any>(null);
+
+// export function LoginProvider({ children }:any) {
+//   const [logged, dispatch] = useReducer(
+//     loginReducer,
+//     initialLoginState
+//   );
+
+//   return (
+//     <LoginContext.Provider value={logged}>
+//       <LoginDispatchContext.Provider value={dispatch}>
+//         {children}
+//       </LoginDispatchContext.Provider>
+//     </LoginContext.Provider>
+//   );
+// }
+
+// export function useLogin() {
+//   return useContext(LoginContext);
+// }
+
+// export function useLoginDispatch() {
+//   return useContext(LoginDispatchContext);
+// }
+
+// function loginReducer(logged: boolean, action: any) {
+//   switch (action.type) {
+//     case 'login': {
+//       return true;
+//     }
+//     case 'logout': {
+//       return false;
+//     }
+//     default: {
+//       throw Error('Unknown action: ' + action.type);
+//     }
+//   }
+// }
+
+// const initialLoginState = false;
