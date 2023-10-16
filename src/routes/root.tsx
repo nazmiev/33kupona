@@ -9,8 +9,8 @@ import { useAppStore } from "../LoginContext";
 
 export default function Root() {
   // const dispatch = useContext(LoginDispatchContext);
-  const { theme, setTheme } = useAppStore();
-  console.log('theme: ', theme);
+  const { user, setUser } = useAppStore();
+  console.log('user id: ', user);
 
   // useEffect(() => {
   //   (async () => {
@@ -24,10 +24,10 @@ export default function Root() {
 
   return (
     <>
-    <p>The current theme is {theme}</p>
+    <p>The user id is {user?.id ? user.id : <></>}</p>
       {/* <Header /> */}
       {/* <Categories /> */}
-      <button onClick={() => setTheme('dark')}>set</button>
+      <button onClick={() => setUser({id: 2})}>set</button>
       {/* <Outlet /> */}
       {/* <Footer /> */}
     </>

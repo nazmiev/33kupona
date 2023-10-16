@@ -1,11 +1,11 @@
 import styles from "./OrdersBlock.module.scss";
 import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { useLogin } from "../../LoginContext";
+// import { useLogin } from "../../LoginContext";
 
 export default function OrdersBlock(invoice: any) {
   const navigate = useNavigate();
-  const isLogin = useLogin();
+  // const isLogin = useLogin();
   console.log('OrdersBlock invoice: ', invoice);
 
   return (
@@ -27,17 +27,17 @@ export default function OrdersBlock(invoice: any) {
       </div>
       <div className={styles.steps}>
         <div className={styles.step}>Купоны</div>
-        {!isLogin && <div className={styles.step}>Вход</div>}
+        {/* {!isLogin && <div className={styles.step}>Вход</div>} */}
         <div className={`${styles.active} ${styles.step}`}>Оплата</div>
         <div className={styles.step}>Готово!</div>
       </div>
       <div className={styles.step1}>
         <p>Ваш заказ:</p>
-        { 
+        {/* { 
           for(const [key, value] of Object.entries(invoice.invoice.item.offers)) {
             console.log(`${key}: ${value}`);
           }
-        }
+        } */}
         <div className={styles.next}>
           <p className={styles.disclaimer}>
             При оплате картой используется защищенное соединение.
