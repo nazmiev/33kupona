@@ -2,6 +2,10 @@ import { createContext, useContext, useEffect } from "react";
 
 type User = {
   id: number;
+  confirmed: number
+  email: string;
+  medicine: number;
+  phone: string;
 }
 
 type AppStoreType = {
@@ -11,14 +15,14 @@ type AppStoreType = {
 
 const AppStore = createContext<AppStoreType>({
   user: null,
-  setUser: () => {},
+  setUser: () => { },
 });
 
 export const useAppStore = () => useContext(AppStore);
 
 import { useState } from "react";
 
-export default function AppStoreProvider ({children}: any) {
+export default function AppStoreProvider({ children }: any) {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {

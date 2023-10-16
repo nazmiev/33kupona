@@ -1,8 +1,8 @@
 import styles from "./OffersBlock.module.scss";
 import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
 import { useState } from "react";
-// import { useLogin } from "../../LoginContext";
 import { createInvoice } from "../../helpers";
+import { useAppStore } from "../../LoginContext";
 
 export default function OffersBlock(offers: any) {
   let location = useLocation();
@@ -10,7 +10,7 @@ export default function OffersBlock(offers: any) {
   const goBack = () => {
     navigate(-1);
   };
-  // const isLogin = useLogin();
+  const { user, setUser } = useAppStore();
 
   const initialCounters = offers.offers.map((el: any) => {
     return (el = { ...el, sum: el.price * el.count });
@@ -33,13 +33,13 @@ export default function OffersBlock(offers: any) {
   };
 
   const handleClick = async () => {
-    // if (!isLogin) {
-    //   return navigate(`/login/auth?${location.pathname.split('/')[location.pathname.split('/').length - 1]}`, {
-    //     state: {
-    //       counts
-    //     }
-    //   });
-    // }
+    if (!user) {
+      return navigate(`/login/auth?${location.pathname.split('/')[location.pathname.split('/').length - 1]}`, {
+        state: {
+          counts
+        }
+      });
+    }
 
     const invoice = await createInvoice(counts);
     

@@ -2,6 +2,7 @@ import styles from "./LoginBlock.module.scss";
 import { useContext, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getUser, postAuth } from "../../helpers";
+import { useAppStore } from "../../LoginContext";
 // import { LoginDispatchContext } from "../../LoginContext";
 
 export default function LoginBlock() {
@@ -9,16 +10,21 @@ export default function LoginBlock() {
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
   let params = useLocation()
-  
-  // const dispatch = useContext(LoginDispatchContext);
   const navigate = useNavigate();
+  const { user, setUser } = useAppStore();
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    (async() => {
+    (async () => {
       const json = await postAuth(login, password, true);
       if (json.success) {
-        // dispatch({type: "login"});
+        (async () => {
+          await getUser().then(user => {
+            if (user.success) {
+              setUser(user.success)
+            }
+          });
+        })();
         params.search ? navigate(`/refine/${params.search.substring(1)}`) : navigate("/");
       }
     })();
@@ -26,7 +32,7 @@ export default function LoginBlock() {
   return (
     <form className={styles.login} onSubmit={handleSubmit} action="/">
       <div className={styles.row}>
-        <label htmlFor="myInput">Email:</label><br/>
+        <label htmlFor="myInput">Email:</label><br />
         <input
           id="myInput"
           name="myInput"
@@ -35,7 +41,7 @@ export default function LoginBlock() {
         />
       </div>
       <div className={styles.row}>
-        <label htmlFor="password">Пароль:</label><br/>
+        <label htmlFor="password">Пароль:</label><br />
         <input
           id="password"
           name="password"
