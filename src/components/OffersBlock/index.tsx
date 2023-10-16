@@ -7,9 +7,6 @@ import { createInvoice } from "../../helpers";
 export default function OffersBlock(offers: any) {
   let location = useLocation();
   const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
-  };
   const isLogin = useLogin();
 
   const initialCounters = offers.offers.map((el: any) => {
@@ -18,9 +15,6 @@ export default function OffersBlock(offers: any) {
 
   const [counts, setCounts] = useState(initialCounters);
   
-
-  // count[17159]: 2
-
   const minus = (id: number) => {
     const updatedCounts = counts.map((el: any) =>
       el.id === id ? { ...el, count: el.count - 1, sum: el.price * (el.count-1) } : el
@@ -45,7 +39,8 @@ export default function OffersBlock(offers: any) {
     }
 
     const invoice = await createInvoice(counts);
-    if (invoice.id) {
+    
+    if (invoice.item.id) {
       navigate("/pay", {
         state: {
           invoice
@@ -60,7 +55,7 @@ export default function OffersBlock(offers: any) {
         <p>Предложения</p>
         <svg
           className={styles.close}
-          onClick={goBack}
+          onClick={() => {navigate(-1)}}
           xmlns="http://www.w3.org/2000/svg"
           width="30"
           height="30"

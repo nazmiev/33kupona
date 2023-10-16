@@ -4,11 +4,8 @@ import OrdersBlock from "../components/OrdersBlock";
 
 export default function Orders() {
   const { state } = useLocation();
-  console.log('Orders state: ', state);
-  // const invoice = useLoaderData();
-  const invoice = createInvoice(state);
-  [ invoice, setInvoice ] 
-  return <OrdersBlock invoice={invoice}/>;
+  const { invoice } = state;
+  return <OrdersBlock invoice={ invoice }/>;
 }
 
 // export async function loader(state1: any) {
