@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { getAction } from "../helpers";
+import { getAction } from "../api";
 import ActionType from "../assets/types/ActionType";
 import DescriptionBlock from "../components/DescriptionBlock";
 

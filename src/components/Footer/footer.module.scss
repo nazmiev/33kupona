@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: space-between;
     margin: 0 auto;
-    padding: 3vh 4vw;
+    padding: calc(min(3vh,20px)) calc(min(4vw,15px));
     gap: 2vh;
     @media (min-width: 1100px) {
       flex-direction: row;

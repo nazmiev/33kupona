@@ -1,9 +1,8 @@
 import styles from "./LoginBlock.module.scss";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { getUser, postAuth } from "../../helpers";
-import { useAppStore } from "../../LoginContext";
-// import { LoginDispatchContext } from "../../LoginContext";
+import { getUser, postAuth } from "../../api";
+import { useAppStore } from "../../context/AppStoreProvider";
 
 export default function LoginBlock() {
   const [login, setLogin] = useState("");
@@ -11,7 +10,7 @@ export default function LoginBlock() {
   const [remember, setRemember] = useState(true);
   let params = useLocation()
   const navigate = useNavigate();
-  const { user, setUser } = useAppStore();
+  const { setUser } = useAppStore();
 
   function handleSubmit(e: any) {
     e.preventDefault();

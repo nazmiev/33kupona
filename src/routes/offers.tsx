@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import ActionType from "../assets/types/ActionType";
 import OffersBlock from "../components/OffersBlock";
-import { getOffers } from "../helpers";
+import { getOffers } from "../api";
 
 export default function Offers() {
   const offers = useLoaderData() as ActionType;

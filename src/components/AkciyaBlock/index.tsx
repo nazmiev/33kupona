@@ -1,6 +1,6 @@
-import { pluralizeRus, secondsToDh } from "../../helpers";
+import { pluralizeRus, secondsToDh } from "../../utils";
 import styles from "./akciyaBlock.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type AkciyaBlockProps = {
   name: string,

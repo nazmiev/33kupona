@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom";
-import { getAction } from "../helpers";
+import { getAction } from "../api";
 import ActionType from "../assets/types/ActionType";
-import ActionPage from "../pages/action-page";
+import ActionPage from "../pages/Action";
 
 export default function Action() {
   const action = useLoaderData() as ActionType;

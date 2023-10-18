@@ -1,0 +1,24 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 2vh;
+  align-items: center;
+  margin: 20vh auto;
+  button {
+    padding: 1.5vh 2.5vw;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px #eee;
+    font-size: 14px;
+    font-family: "Open Sans", sans-serif;
+    cursor: pointer;
+    color: #fff;
+    background: #16ba2d;
+    border: 1px solid #16ba2d;
+    text-decoration: none;
+    &:disabled {
+      background: #eee;
+      border: 1px solid #fff;
+    }
+  }
+}

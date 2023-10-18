@@ -1,10 +1,8 @@
-import { useContext, useEffect, useReducer, useState } from "react";
-// import { LoginContext, LoginDispatchContext, useLogin } from "../../LoginContext";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./header.module.scss";
 import { useSpring, animated } from "react-spring";
-import { getUser } from "../../helpers";
-import { useAppStore } from "../../LoginContext";
+import { useAppStore } from "../../context/AppStoreProvider";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -87,7 +85,7 @@ const Header = () => {
           <animated.div
             style={item}
             className={styles.item}
-            onClick={() => onClickLogout()}
+            onClick={onClickLogout}
           >
             выйти
           </animated.div>

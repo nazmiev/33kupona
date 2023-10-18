@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { getComments } from "../helpers";
+import { getComments } from "../api";
 import ActionType from "../assets/types/ActionType";
 import CommentsBlock from "../components/CommentsBlock";
 

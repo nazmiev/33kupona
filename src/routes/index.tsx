@@ -1,5 +1,5 @@
 import { useLoaderData, useNavigation } from "react-router-dom";
-import { getAllActions } from "../helpers";
+import { getAllActions } from "../api";
 import AkciyaBlock from "../components/AkciyaBlock";
 import Skeleton from "../components/AkciyaBlock/skeleton";
 import ActionType from "../assets/types/ActionType";

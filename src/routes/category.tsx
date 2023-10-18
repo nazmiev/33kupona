@@ -1,9 +1,10 @@
 import { useLoaderData, useNavigation } from "react-router-dom";
-import { getAllActions, getCategoryActions } from "../helpers";
+import { getAllActions, getCategoryActions } from "../api";
 import AkciyaBlock from "../components/AkciyaBlock";
 import Skeleton from "../components/AkciyaBlock/skeleton";
 import ActionType from "../assets/types/ActionType";
 import Categories from "../components/Categories";
+import Header from "../components/Header";
 
 export default function Category() {
   const navigation = useNavigation();
@@ -16,6 +17,7 @@ export default function Category() {
 
   return (
     <>
+      <Header/>
       <Categories />
       <div className="main__container">
         {actions.length ? (

@@ -1,15 +1,16 @@
 import styles from "./action-page.module.scss";
-import { pluralizeRus, secondsToDh } from "../helpers";
-import { NavLink, Link, Outlet } from "react-router-dom";
-import Categories from "../components/Categories";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import { pluralizeRus, secondsToDh } from "../../utils";
+import { NavLink, Link, Outlet, ScrollRestoration } from "react-router-dom";
+import Categories from "../../components/Categories";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export default function ActionPage(action: any) {
   return (
     <>
       <Header />
       <Categories />
+      <ScrollRestoration />
       <div className={`action__container ${styles.offerTop}`}>
         <img src={action.action.image_big || null} alt={action.action.name} />
         <div className={styles.offerTop_description}>

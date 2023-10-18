@@ -1,8 +1,8 @@
 import styles from "./OffersBlock.module.scss";
 import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { createInvoice } from "../../helpers";
-import { useAppStore } from "../../LoginContext";
+import { createInvoice } from "../../api";
+import { useAppStore } from "../../context/AppStoreProvider";
 
 export default function OffersBlock(offers: any) {
   let location = useLocation();
@@ -71,7 +71,7 @@ export default function OffersBlock(offers: any) {
       </div>
       <div className={styles.steps}>
         <div className={`${styles.active} ${styles.step}`}>Купоны</div>
-        {/* {!isLogin && <div className={styles.step}>Вход</div>} */}
+        {!user && <div className={styles.step}>Вход</div>}
         <div className={styles.step}>Оплата</div>
         <div className={styles.step}>Готово!</div>
       </div>
@@ -137,7 +137,7 @@ export default function OffersBlock(offers: any) {
           </p>
           <button 
             disabled={counts.reduce(function (acc: number ,obj: any) { return acc + obj.sum}, 0) == 0}
-            onClick={() => handleClick()}
+            onClick={handleClick}
             >Продолжить</button>
         </div>
       </div>

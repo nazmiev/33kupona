@@ -1,12 +1,39 @@
 import styles from "./OrdersBlock.module.scss";
-import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAppStore } from "../../context/AppStoreProvider";
+import { createPayment } from "../../api";
 import { useState } from "react";
-// import { useLogin } from "../../LoginContext";
 
-export default function OrdersBlock(invoice: any) {
+export default function OrdersBlock({ invoice }: any) {
   const navigate = useNavigate();
-  // const isLogin = useLogin();
-  console.log('OrdersBlock invoice: ', invoice);
+  const { user } = useAppStore();
+
+  const offers = invoice.item.offers.map((offer: any) => (
+    <div className={styles.ordersList} key={offer.id}>
+      <p className={styles.ordersListItem}>{offer.name} - {offer.count} x {offer.price} = {offer.count * offer.price}</p>
+    </div>
+  )
+  )
+
+  const summ = invoice.item.offers.reduce((acc: number, offer: any) => acc += offer.count * offer.price, 0);
+
+  const [pressed, setPressed] = useState(false);
+  const handleClick = async (e: any) => {
+    if (pressed) {
+      return;
+    }
+    setPressed(true);
+
+    const payment = await createPayment(invoice.item.id);
+
+    if (payment.success) {
+      window.location.href = payment.data.url;
+      return;
+    }
+
+    setPressed(false);
+  };
+
 
   return (
     <div className={`offers__container ${styles.offers}`}>
@@ -27,22 +54,19 @@ export default function OrdersBlock(invoice: any) {
       </div>
       <div className={styles.steps}>
         <div className={styles.step}>Купоны</div>
-        {/* {!isLogin && <div className={styles.step}>Вход</div>} */}
+        {!user && <div className={styles.step}>Вход</div>}
         <div className={`${styles.active} ${styles.step}`}>Оплата</div>
         <div className={styles.step}>Готово!</div>
       </div>
-      <div className={styles.step1}>
+      <div className={styles.step2}>
         <p>Ваш заказ:</p>
-        {/* { 
-          for(const [key, value] of Object.entries(invoice.invoice.item.offers)) {
-            console.log(`${key}: ${value}`);
-          }
-        } */}
+        {offers}
+        <p>Сумма: {summ} рублей</p>
         <div className={styles.next}>
           <p className={styles.disclaimer}>
             При оплате картой используется защищенное соединение.
           </p>
-          <button>Оплатить</button>
+          <button disabled={pressed} onClick={handleClick}>Оплатить</button>
         </div>
       </div>
     </div>
