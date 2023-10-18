@@ -13,6 +13,8 @@ import Register from "./routes/register";
 import ForgetPassword from "./routes/forget-password";
 import Orders from "./routes/orders";
 
+const baseName = import.meta.env.BASE_URL;
+
 export default function App() {
     const router = createBrowserRouter([
         {
@@ -72,8 +74,8 @@ export default function App() {
                 }
             ]
         }
-    ]);
+    ], {basename: baseName});
     return (
-        <RouterProvider router={router} />
+        <RouterProvider router={router}/>
     );
 }
