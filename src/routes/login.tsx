@@ -1,11 +1,5 @@
-import { Outlet } from "react-router-dom";
-import LoginHeader from "../components/LoginHeader";
+import LoginBlock from "../components/LoginBlock";
 
-export default function Login() {
-  return (
-    <div className="login__container">
-      <LoginHeader />
-      <Outlet />
-    </div>
-  );
+export default function Login(): JSX.Element {
+  return <LoginBlock />;
 }

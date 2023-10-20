@@ -57,10 +57,10 @@ export default function App() {
                     loader: categoryLoader,
                 },
                 {
-                    path: "login",
-                    element: <Login />,
+                    path: "auth",
+                    element: <Auth/>,
                     children: [
-                        { path: "auth", element: <Auth />, },
+                        { path: "login", element: <Login />, },
                         { path: "register", element: <Register />, },
                         { path: "forget_password", element: <ForgetPassword />, },
                     ]

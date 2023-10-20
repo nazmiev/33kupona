@@ -1,49 +1,59 @@
-const headers = {
-  'X-VRB': sessionStorage.getItem('vrb') ?? '',
-}
+const access_token = sessionStorage.getItem('vrb') ?? '';
+
+const params = new URLSearchParams({
+  format: 'json',
+  access_token: access_token,
+});
 
 export async function getAction(url: string) {
-  let response = await fetch(`https://33kupona.ru/tomsk/${url}?format=json`);
+  let response = await fetch(`https://33kupona.ru/tomsk/${url}?` + params);
   let json = await response.json();
   return json.action ?? null;
 }
 
 export async function getComments(url: string) {
-  let response = await fetch(`https://33kupona.ru/tomsk/${url}/comment?format=json`);
+  let response = await fetch('https://33kupona.ru/tomsk/${url}/comment?' + params);
   let json = await response.json();
   return json.comments ?? [];
 }
 
 export async function getCategoryActions(categoryId: number) {
-  let response = await fetch(`https://6438e0e91b9a7dd5c959dd29.mockapi.io/akcii?category=` + categoryId);
+  let response = await fetch('https://6438e0e91b9a7dd5c959dd29.mockapi.io/akcii?category=' + categoryId);
   let actions = await response.json();
   return actions ?? null;
 }
 
 export async function getAllActions() {
-  let response = await fetch('https://33kupona.ru/?format=json');
+  let response = await fetch('https://33kupona.ru/?' + params);
   let json = await response.json();
   let actions = Object.values(json?.actions ?? []);
+  ///////категориии есть тутава
   return actions;
 }
 
 export async function getOffers(action_id: number) {
-  let response = await fetch('https://33kupona.ru/ajax/offer?format=json&action_id=' + action_id);
+  const params = new URLSearchParams({
+    action_id: ''+ action_id,
+    format: 'json'
+  })
+  let response = await fetch('https://33kupona.ru/ajax/offer?' + params);
   let json = await response.json();
   let offers = Object.values(json ?? []);
   return offers;
 }
 
 export async function createInvoice(counts: any) {
-  let data: any = {};
+  let data: any = {
+    format: 'json',
+    access_token: access_token
+  };
 
   counts.forEach((el: any) => {
     data['count[' + el.id + ']'] = el.count;
   })
 
-  let response = await fetch('https://33kupona.ru/ajax/invoice?format=json', {
+  let response = await fetch('https://33kupona.ru/ajax/invoice', {
     method: "POST",
-    headers: headers,
     body: new URLSearchParams(data),
   });
   let json = await response?.json();
@@ -55,11 +65,12 @@ export async function createInvoice(counts: any) {
 
 export async function createPayment(invoiceId: number) {
   let data: any = {
-    inv: invoiceId
+    inv: invoiceId,
+    format: 'json',
+    access_token: access_token
   };
-  let response = await fetch('https://33kupona.ru/payment/tinkoff/init?format=json', {
+  let response = await fetch('https://33kupona.ru/payment/tinkoff/init', {
     method: "POST",
-    headers: headers,
     body: new URLSearchParams(data),
   });
 
@@ -73,15 +84,16 @@ export async function postAuth(name: string, pass: string, remember_me: boolean)
     'user_auth_name': name,
     'user_auth_pass': pass,
     'remember_me': remember_me,
+    format: 'json',
   };
-  let response = await fetch('https://33kupona.ru/login?format=json', {
+  let response = await fetch('https://33kupona.ru/login', {
     method: "POST",
     body: new URLSearchParams(data),
   });
   let json = await response?.json();
 
   if (json.success) {
-    headers['X-VRB'] = json.success;
+    params.set('access_token', json.success)
     sessionStorage.setItem('vrb', json.success)
   }
   if (json.error) {
@@ -95,18 +107,17 @@ export async function postRegister(email: string, password: string, agreement_co
     'obj[email]': email,
     'obj[password]': password,
     'obj[agreement_confirmed]': agreement_confirmed,
-    send: 1
+    send: 1,
+    format: 'json',
   };
-  let response = await fetch('https://33kupona.ru/register?format=json', {
+  let response = await fetch('https://33kupona.ru/register', {
     method: "POST",
     body: new URLSearchParams(data),
   });
-  console.log('response: ', response);
   let json = await response?.json();
-  console.log('json: ', json);
 
   if (json.success) {
-    headers['X-VRB'] = json.success;
+    params.set('access_token', json.success)
     sessionStorage.setItem('vrb', json.success)
   }
   if (json.error) {
@@ -116,22 +127,20 @@ export async function postRegister(email: string, password: string, agreement_co
 }
 
 export async function getUser() {
-  let response = await fetch('https://33kupona.ru/api/user?format=json', {
-    headers: headers
-  });
+  let response = await fetch('https://33kupona.ru/api/user?' + params);
   let json = await response?.json();
+  console.log('getUser response: ', json);
   return json;
 }
 
 export async function getProfile() {
-  let response = await fetch('https://33kupona.ru/profile?format=json', {
-    headers: headers
-  });
-  console.log('response: ', response);
+  console.log('https://33kupona.ru/profile?' + params);
+  let response = await fetch('https://33kupona.ru/profile?' + params);
   let json = await response?.json();
   return json;
 }
 
 export async function LogOut() {
   sessionStorage.setItem('vrb', '');
+  params.delete('access_token');
 }

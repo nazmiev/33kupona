@@ -45,7 +45,7 @@ const Header = () => {
             </svg>
           </Link>
           {!user ? (
-            <Link to="/login/auth">
+            <Link to="/auth/login/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"

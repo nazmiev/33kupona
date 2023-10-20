@@ -1,22 +1,22 @@
 import styles from "./authHeader.module.scss";
 import { NavLink, useNavigate } from "react-router-dom"
 
-const LoginHeader = () => {
+export default function AuthHeader () {
   const navigate = useNavigate();
 
   return (
     <nav className={styles.menu}>
-      <NavLink to="/login/auth"
+      <NavLink to="/auth/login/"
         className={({ isActive, isPending }) =>
           isPending ? styles.pending
             : isActive ? styles.active
               : styles.item}>
         Вход
       </NavLink>
-      <NavLink to="/login/register" className={({ isActive, isPending }) =>
+      <NavLink to="/auth/register" className={({ isActive, isPending }) =>
         isPending ? styles.pending : isActive ? styles.active : "" + styles.item
       }>Регистрация</NavLink>
-      <NavLink to="/login/forget_password" className={({ isActive, isPending }) =>
+      <NavLink to="/auth/forget_password" className={({ isActive, isPending }) =>
         isPending ? styles.pending : isActive ? styles.active : "" + styles.item
       }>Забыли пароль?</NavLink>
       <svg
@@ -34,5 +34,3 @@ const LoginHeader = () => {
     </nav>
   );
 };
-
-export default LoginHeader;
