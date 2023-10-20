@@ -90,10 +90,44 @@ export async function postAuth(name: string, pass: string, remember_me: boolean)
   return json;
 }
 
+export async function postRegister(email: string, password: string, agreement_confirmed: boolean) {
+  const data: any = {
+    'obj[email]': email,
+    'obj[password]': password,
+    'obj[agreement_confirmed]': agreement_confirmed,
+    send: 1
+  };
+  let response = await fetch('https://33kupona.ru/register?format=json', {
+    method: "POST",
+    body: new URLSearchParams(data),
+  });
+  console.log('response: ', response);
+  let json = await response?.json();
+  console.log('json: ', json);
+
+  if (json.success) {
+    headers['X-VRB'] = json.success;
+    sessionStorage.setItem('vrb', json.success)
+  }
+  if (json.error) {
+    // alert(Object.values(json.error).join("\n"));
+  }
+  return json;
+}
+
 export async function getUser() {
   let response = await fetch('https://33kupona.ru/api/user?format=json', {
     headers: headers
   });
+  let json = await response?.json();
+  return json;
+}
+
+export async function getProfile() {
+  let response = await fetch('https://33kupona.ru/profile?format=json', {
+    headers: headers
+  });
+  console.log('response: ', response);
   let json = await response?.json();
   return json;
 }

@@ -12,6 +12,9 @@ import Login from "./routes/login";
 import Register from "./routes/register";
 import ForgetPassword from "./routes/forget-password";
 import Orders from "./routes/orders";
+import Profile from "./routes/profile";
+import Coupons from "./routes/coupons";
+import MyActions from "./routes/myactions";
 
 const baseName = import.meta.env.BASE_URL;
 
@@ -35,6 +38,18 @@ export default function App() {
                 {
                     path: "pay",
                     element: <Orders />,
+                },
+                {
+                    path: "/profile",
+                    element: <Profile />,
+                },
+                {
+                    path: "/coupons",
+                    element: <Coupons />,
+                },
+                {
+                    path: "/myactions",
+                    element: <MyActions />,
                 },
                 {
                     path: "c/:category_id",

@@ -17,7 +17,7 @@ const Header = () => {
   };
 
   const menu = useSpring({
-    height: open ? 45 : 0,
+    height: open ? 30 : 0,
     padding: open ? 7 : 0,
     from: { height: 0, padding: 0 },
   });
@@ -73,20 +73,28 @@ const Header = () => {
           )}
         </div>
         <animated.div style={menu} className={styles.menu}>
-          <animated.div style={item} className={styles.item}>
+          <animated.div 
+            style={item} 
+            className={styles.item}
+            onClick={() => navigate("/profile")}>
             профиль
           </animated.div>
-          <animated.div style={item} className={styles.item}>
+          <animated.div 
+            style={item} 
+            className={styles.item}
+            onClick={() => navigate("/coupons")}>
             купоны
           </animated.div>
-          <animated.div style={item} className={styles.item}>
+          <animated.div 
+            style={item} 
+            className={styles.item}
+            onClick={() => navigate("/myactions")}>
             акции
           </animated.div>
           <animated.div
             style={item}
             className={styles.item}
-            onClick={onClickLogout}
-          >
+            onClick={onClickLogout}>
             выйти
           </animated.div>
         </animated.div>

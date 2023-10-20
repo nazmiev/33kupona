@@ -1,7 +1,7 @@
 import styles from "./RegisterBlock.module.scss";
 import { useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { getUser, postAuth } from "../../api";
+import { getUser, postRegister } from "../../api";
 import { useAppStore } from "../../context/AppStoreProvider";
 
 export default function RegisterBlock() {
@@ -15,7 +15,7 @@ export default function RegisterBlock() {
   function handleSubmit(e: any) {
     e.preventDefault();
     (async () => {
-      const json = await postAuth(login, password, true);
+      const json = await postRegister(login, password, true);
       if (json.success) {
         (async () => {
           await getUser().then(user => {
@@ -33,7 +33,8 @@ export default function RegisterBlock() {
       <form className={styles.login} onSubmit={handleSubmit} action="/">
         <div className={styles.row}>
           <label htmlFor="myInput">Email:</label><br />
-          <input
+          <input 
+            type="email"
             id="myInput"
             name="myInput"
             value={login}
@@ -42,7 +43,8 @@ export default function RegisterBlock() {
         </div>
         <div className={styles.row}>
           <label htmlFor="password">Пароль:</label><br />
-          <input
+          <input 
+            type="password"
             id="password"
             name="password"
             value={password}

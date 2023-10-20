@@ -5,6 +5,7 @@ import Skeleton from "../components/AkciyaBlock/skeleton";
 import ActionType from "../assets/types/ActionType";
 import Categories from "../components/Categories";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function Category() {
   const navigation = useNavigation();
@@ -19,7 +20,7 @@ export default function Category() {
     <>
       <Header/>
       <Categories />
-      <div className="main__container">
+      <section className="main__container">
         {actions.length ? (
           navigation.state === "loading" ? (
             skeletons
@@ -29,7 +30,8 @@ export default function Category() {
         ) : (
           <h1>нет акций в категории</h1>
         )}
-      </div>
+      </section>
+      <Footer />
     </>
   );
 }

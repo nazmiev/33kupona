@@ -1,17 +1,19 @@
 .menu {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1vw;
   box-shadow: 0 5px 10px -4px #999999;
-  background: #dee;
+  background: #eee;
   font-size: 16px;
   padding: 1vh 0;
+  gap: calc(min(3vw,12px));
 }
 
 .item {
   font-size: calc(min(16px, 3.5vw));
   padding: 1vh 3vw;
-  border-radius: 5%;
+  border-radius: 5px;
   background: #fafbfb;
   background-image: linear-gradient(to bottom, #ffffff 0, #f5f6f7 100%);
   box-shadow: 0 1px 4px -1px #999;
@@ -19,13 +21,18 @@
   color: #333;
 }
 
+svg {
+  color: #888;
+}
+
 .active {
   font-size: calc(min(16px, 3.5vw));
   padding: 1vh 3vw;
-  border-radius: 5%;
   box-shadow: 0 1px 4px -1px #999;
   background-image: none;
-  background-color: #999;
+  background-color: #fff;
+  border: 1px solid #16ba2d;
+  border-radius: 5px;
   color: #333;
   text-decoration: none;
 }

@@ -5,6 +5,36 @@
   gap: 2vh;
   align-items: center;
   margin: 20vh auto;
+
+  input[type=email], input[type=password] {
+    border: 1px solid #E6E6E6;
+    border-radius: 10px;
+    width: 328px;
+    height: 48px;
+    margin-top: 1vh;
+    box-sizing: border-box;
+    padding: 0 16px;
+    font-size: larger;
+    &:focus {
+      outline: none !important;
+      border-color: #16ba2d;
+  }
+  }
+
+  .row {
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    align-items: center;
+  }
+  
+  input[type=checkbox] {
+    border: 1px solid #E6E6E6;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+  }
+
   button {
     padding: 1.5vh 2.5vw;
     border-radius: 5px;

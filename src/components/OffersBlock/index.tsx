@@ -1,5 +1,5 @@
 import styles from "./OffersBlock.module.scss";
-import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { createInvoice } from "../../api";
 import { useAppStore } from "../../context/AppStoreProvider";
@@ -7,10 +7,7 @@ import { useAppStore } from "../../context/AppStoreProvider";
 export default function OffersBlock(offers: any) {
   let location = useLocation();
   const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
-  };
-  const { user, setUser } = useAppStore();
+  const { user } = useAppStore();
 
   const initialCounters = offers.offers.map((el: any) => {
     return (el = { ...el, sum: el.price * el.count });
@@ -81,9 +78,10 @@ export default function OffersBlock(offers: any) {
         {counts.length ? (
           <div className={styles.offersList}>
             {counts.map((offer: any) => (
+              <>
               <div className={styles.offersListItem} key={offer.id}>
                 <div>{offer.name}</div>
-                <div><img src={offer.image}/></div>
+                {/* <div><img src={offer.image}/></div> */}
                 <div className={styles.offersListItemOrder}>
                   <div>
                     <div>{offer.price} ₽</div>
@@ -120,6 +118,8 @@ export default function OffersBlock(offers: any) {
                   </div>
                 </div>
               </div>
+              <hr />
+              </>
             ))}
           </div>
         ) : (

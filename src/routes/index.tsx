@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigation } from "react-router-dom";
+import { ScrollRestoration, useLoaderData, useNavigation } from "react-router-dom";
 import { getAllActions } from "../api";
 import AkciyaBlock from "../components/AkciyaBlock";
 import Skeleton from "../components/AkciyaBlock/skeleton";
@@ -20,6 +20,7 @@ export default function Index() {
     <>
       <Header />
       <Categories />
+      <ScrollRestoration />
       <div className="main__container">
         {actions.length ? (
           navigation.state === "loading" ? (
