@@ -29,44 +29,43 @@ export default function RegisterBlock() {
     })();
   }
   return (
-    <><h1>Регистрация</h1>
-      <form className={styles.login} onSubmit={handleSubmit} action="/">
-        <div className={styles.row}>
-          <label htmlFor="myInput">Email:</label><br />
-          <input 
-            type="email"
-            id="myInput"
-            name="myInput"
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
-          />
-        </div>
-        <div className={styles.row}>
-          <label htmlFor="password">Пароль:</label><br />
-          <input 
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <span>Пароль должен содержать от 4 до 20 символов из списка: A-z, 0-9, ! @ # $ % ^ & * ( ) _ - + и не может совпадать с логином.</span>
-        <div className={styles.row}>
-          <label htmlFor="myCheckbox">Я согласен с <Link to="disclaimer">правилами использования ресурса</Link></label>
-          <input
-            id="myCheckbox"
-            type="checkbox"
-            name="myCheckbox"
-            checked={remember}
-            onChange={(e) => setRemember(e.target.checked)}
-          />
-        </div>
-        <button disabled={!(login && password)} type="submit">
-          Зарегистрироваться
-        </button>
-      </form>
-    </>
+    <form className={styles.login} onSubmit={handleSubmit} action="/">
+      <div>
+        <label htmlFor="myInput">Email:</label>
+        <input
+          type="email"
+          id="myInput"
+          name="myInput"
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="password">Пароль:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <small>от 4 до 20 символов: A-z, 0-9, !@#$%^&*()_-+</small>
+      </div>
+      <div className={styles.row}>
+        <input
+          id="myCheckbox"
+          type="checkbox"
+          name="myCheckbox"
+          checked={remember}
+          onChange={(e) => setRemember(e.target.checked)}
+        />
+        <label htmlFor="myCheckbox">Я согласен с <Link to="disclaimer">правилами</Link></label>
+      </div>
+      {login&&login===password && (<h4>Пароль не должен совпадать с логином</h4>)}
+      <button disabled={!(login && password) || (login===password)} type="submit">
+        Зарегистрироваться
+      </button>
+    </form>
   );
 }
 
