@@ -4,7 +4,7 @@
   width: 300px;
   gap: 2vh;
   align-items: center;
-  margin: 20vh auto;
+  margin: 10vh auto;
 
   input[type=email], input[type=password] {
     border: 1px solid #E6E6E6;
@@ -47,7 +47,7 @@
     border: 1px solid #16ba2d;
     text-decoration: none;
     &:disabled {
-      background: #eee;
+      background: #ddd;
       border: 1px solid #fff;
     }
   }

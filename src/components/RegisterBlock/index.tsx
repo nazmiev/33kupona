@@ -1,18 +1,16 @@
 import styles from "./RegisterBlock.module.scss";
 import { useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getUser, postRegister } from "../../api";
 import { useAppStore } from "../../context/AppStoreProvider";
 
-export default function RegisterBlock() {
+export default function RegisterBlock({ onSuccess }: any) {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
-  let params = useLocation()
-  const navigate = useNavigate();
   const { setUser } = useAppStore();
 
-  function handleSubmit(e: any) {
+  function handleRegisterSubmit(e: any) {
     e.preventDefault();
     (async () => {
       const json = await postRegister(login, password, true);
@@ -20,16 +18,18 @@ export default function RegisterBlock() {
         (async () => {
           await getUser().then(user => {
             if (user.success) {
-              setUser(user.success)
+              setUser(user.success);
+              onSuccess();
             }
           });
         })();
-        params.search ? navigate(`/refine/${params.search.substring(1)}`) : navigate("/");
       }
     })();
   }
+
+
   return (
-    <form className={styles.login} onSubmit={handleSubmit} action="/">
+    <form className={styles.register} onSubmit={handleRegisterSubmit} action="/">
       <div>
         <label htmlFor="myInput">Email:</label>
         <input
@@ -61,15 +61,10 @@ export default function RegisterBlock() {
         />
         <label htmlFor="myCheckbox">Я согласен с <Link to="disclaimer">правилами</Link></label>
       </div>
-      {login&&login===password && (<h4>Пароль не должен совпадать с логином</h4>)}
-      <button disabled={!(login && password) || (login===password)} type="submit">
+      {login && login === password && (<h4>Пароль не должен совпадать с логином</h4>)}
+      <button disabled={!(login && password) || (login === password)} type="submit">
         Зарегистрироваться
       </button>
     </form>
   );
 }
-
-
-
-
-

@@ -4,8 +4,12 @@ import { NavLink, Link, Outlet, ScrollRestoration } from "react-router-dom";
 import Categories from "../../components/Categories";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { useState } from "react";
+import PayModal from "../../components/PayModal";
 
 export default function ActionPage(action: any) {
+  const [openPayModal, setOpenPayModal] = useState(false);
+
   return (
     <>
       <Header />
@@ -63,9 +67,10 @@ export default function ActionPage(action: any) {
                   {/* <Link to="/">Отзывы ({action.action.comment_count ? action.action.comment_count : 0})</Link> */}
                 </div>
               </div>
-              <NavLink to={`/refine/${action.action.id}`}>
+              <button onClick={() => setOpenPayModal(true)}>Купить</button>
+              {/* <NavLink to={`/refine/${action.action.id}`}>
                 <button>Купить</button>
-              </NavLink>
+              </NavLink> */}
             </div>
           </div>
         </div>
@@ -92,6 +97,7 @@ export default function ActionPage(action: any) {
       </div>
       <Outlet />
       <Footer />
+      {openPayModal && <PayModal action={action} openPayModal={openPayModal} setOpenPayModal={setOpenPayModal}/>}
     </>
   );
 }

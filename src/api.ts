@@ -51,7 +51,6 @@ export async function createInvoice(counts: any) {
   counts.forEach((el: any) => {
     data['count[' + el.id + ']'] = el.count;
   })
-
   let response = await fetch('https://33kupona.ru/ajax/invoice', {
     method: "POST",
     body: new URLSearchParams(data),
@@ -129,7 +128,6 @@ export async function postRegister(email: string, password: string, agreement_co
 export async function getUser() {
   let response = await fetch('https://33kupona.ru/api/user?' + params);
   let json = await response?.json();
-  console.log('getUser response: ', json);
   return json;
 }
 

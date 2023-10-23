@@ -1,0 +1,24 @@
+.auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .switch {
+        padding: 1.5vh 2.5vw;
+        border-radius: 5px;
+        box-shadow: 0 1px 1px #eee;
+        font-size: 14px;
+        font-family: "Open Sans", sans-serif;
+        cursor: pointer;
+        color: #fff;
+        background: #16ba2d;
+        border: 1px solid #16ba2d;
+        text-decoration: none;
+        max-width: 300px;
+
+        &:disabled {
+            background: #ddd;
+            border: 1px solid #fff;
+        }
+    }
+}

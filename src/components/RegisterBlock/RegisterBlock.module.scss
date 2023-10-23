@@ -1,13 +1,12 @@
-.login {
+.register {
   display: flex;
   flex-direction: column;
   width: 300px;
   gap: 2vh;
   align-items: center;
-  margin: 20vh auto;
+  margin: 10vh auto;
 
-  input[type=email],
-  input[type=password] {
+  input[type=email], input[type=password] {
     border: 1px solid #E6E6E6;
     border-radius: 10px;
     width: 328px;
@@ -16,11 +15,10 @@
     box-sizing: border-box;
     padding: 0 16px;
     font-size: larger;
-
     &:focus {
       outline: none !important;
       border-color: #16ba2d;
-    }
+  }
   }
 
   .row {
@@ -28,15 +26,8 @@
     justify-content: center;
     gap: 1vw;
     align-items: center;
-
   }
-
-  small {
-    color: #aaa;
-    margin-top: 1vh;
-    display: block;
-  }
-
+  
   input[type=checkbox] {
     border: 1px solid #E6E6E6;
     border-radius: 10px;
@@ -55,10 +46,13 @@
     background: #16ba2d;
     border: 1px solid #16ba2d;
     text-decoration: none;
-
     &:disabled {
-      background: #eee;
+      background: #ddd;
       border: 1px solid #fff;
     }
+  }
+
+  small {
+    color: #555;
   }
 }

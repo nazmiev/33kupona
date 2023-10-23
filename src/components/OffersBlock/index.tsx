@@ -3,11 +3,9 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { createInvoice } from "../../api";
 import { useAppStore } from "../../context/AppStoreProvider";
-import Auth from "../../routes/auth";
-import LoginBlock from "../LoginBlock";
+import LoginBlock from "../AuthBlock";
 
 export default function OffersBlock(offers: any) {
-  let location = useLocation();
   const navigate = useNavigate();
   const { user } = useAppStore();
   const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -30,27 +28,6 @@ export default function OffersBlock(offers: any) {
       el.id === id ? { ...el, count: el.count + 1, sum: el.price * (el.count + 1) } : el
     );
     setCounts(updatedCounts);
-  };
-
-  const handleClick = async () => {
-    // setAuthModalOpen(true);
-    if (!user) {
-      return navigate(`/auth/login?${location.pathname.split('/')[location.pathname.split('/').length - 1]}`, {
-        state: {
-          counts
-        }
-      });
-    }
-
-    const invoice = await createInvoice(counts);
-
-    if (invoice.item.id) {
-      navigate("/pay", {
-        state: {
-          invoice
-        }
-      })
-    }
   };
 
   return (
@@ -77,8 +54,8 @@ export default function OffersBlock(offers: any) {
           <div className={styles.step}>Оплата</div>
           <div className={styles.step}>Готово!</div>
         </div>
-        {/* {authModalOpen && <LoginBlock />} */}
-        {/* {!authModalOpen && ( */}
+        {authModalOpen && <LoginBlock />}
+        {!authModalOpen && (
           <div className={styles.step1}>
             <p>Выберите необходимое количество купонов</p>
 
@@ -88,7 +65,6 @@ export default function OffersBlock(offers: any) {
                   <section key={offer.id}>
                     <div className={styles.offersListItem} >
                       <div>{offer.name}</div>
-                      {/* <div><img src={offer.image}/></div> */}
                       <div className={styles.offersListItemOrder}>
                         <div>
                           <div>{offer.price} ₽</div>
@@ -144,32 +120,12 @@ export default function OffersBlock(offers: any) {
               </p>
               <button
                 disabled={counts.reduce(function (acc: number, obj: any) { return acc + obj.sum }, 0) == 0}
-                onClick={handleClick}
+                onClick={() => setAuthModalOpen(true)}
               >Продолжить</button>
             </div>
           </div>
-          {/* )} */}
+          )}
       </div>
     </>
   );
 }
-
-
-
-// /auth/login AuthLogin
-//   include AuthBlock
-// /auth/register AuthRegister
-//   include AuthBlock(Register)
-
-// [modal]
-//   include AuthBlock
-
-// /pay/auth PayAuth
-//   include AuthBlock
-
-
-// <AuthBlock>
-//   <AuthLoginBlock></AuthLoginBlock>
-//   <AuthRegister></AuthRegister>
-//   <AuthForgot></AuthForgot>
-// </AuthBlock>

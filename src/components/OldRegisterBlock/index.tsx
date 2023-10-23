@@ -1,31 +1,33 @@
-import styles from "./LoginBlock.module.scss";
+import styles from "./RegisterBlock.module.scss";
 import { useState } from "react";
-import { getUser, postAuth, postRegister } from "../../api";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { getUser, postRegister } from "../../api";
 import { useAppStore } from "../../context/AppStoreProvider";
 
-export default function LoginBlock({ onSuccess }: any) {
+export default function OldRegisterBlock() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
+  let params = useLocation()
+  const navigate = useNavigate();
   const { setUser } = useAppStore();
 
   function handleSubmit(e: any) {
     e.preventDefault();
     (async () => {
-      const json = await postAuth(login, password, true);
+      const json = await postRegister(login, password, true);
       if (json.success) {
         (async () => {
           await getUser().then(user => {
             if (user.success) {
               setUser(user.success)
-              onSuccess();
             }
           });
         })();
+        params.search ? navigate(`/refine/${params.search.substring(1)}`) : navigate("/");
       }
     })();
   }
-
   return (
     <form className={styles.login} onSubmit={handleSubmit} action="/">
       <div>
@@ -39,7 +41,7 @@ export default function LoginBlock({ onSuccess }: any) {
         />
       </div>
       <div>
-        <label htmlFor="password">Пароль:</label><br />
+        <label htmlFor="password">Пароль:</label>
         <input
           type="password"
           id="password"
@@ -47,6 +49,7 @@ export default function LoginBlock({ onSuccess }: any) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <small>от 4 до 20 символов: A-z, 0-9, !@#$%^&*()_-+</small>
       </div>
       <div className={styles.row}>
         <input
@@ -56,11 +59,17 @@ export default function LoginBlock({ onSuccess }: any) {
           checked={remember}
           onChange={(e) => setRemember(e.target.checked)}
         />
-        <label htmlFor="myCheckbox">Запомнить меня? </label>
+        <label htmlFor="myCheckbox">Я согласен с <Link to="disclaimer">правилами</Link></label>
       </div>
-      <button disabled={!(login && password)} type="submit">
-        Войти
+      {login&&login===password && (<h4>Пароль не должен совпадать с логином</h4>)}
+      <button disabled={!(login && password) || (login===password)} type="submit">
+        Зарегистрироваться
       </button>
     </form>
   );
 }
+
+
+
+
+
