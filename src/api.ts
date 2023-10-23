@@ -26,9 +26,7 @@ export async function getCategoryActions(categoryId: number) {
 export async function getAllActions() {
   let response = await fetch('https://33kupona.ru/?' + params);
   let json = await response.json();
-  let actions = Object.values(json?.actions ?? []);
-  ///////категориии есть тутава
-  return actions;
+  return json;
 }
 
 export async function getOffers(action_id: number) {

@@ -1,24 +1,29 @@
-import { useLoaderData, useNavigation } from "react-router-dom";
-import { getAllActions, getCategoryActions } from "../api";
+import { useNavigation, useParams } from "react-router-dom";
 import AkciyaBlock from "../components/AkciyaBlock";
 import Skeleton from "../components/AkciyaBlock/skeleton";
-import ActionType from "../assets/types/ActionType";
 import Categories from "../components/Categories";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useAppStore } from "../context/AppStoreProvider";
 
 export default function Category() {
   const navigation = useNavigation();
-  const actions = useLoaderData() as ActionType[];
+  const { actions, categories } = useAppStore();
+  let { category_url } = useParams();
+  const findCategory = categories.find(c => c.url_name === category_url);
 
   const skeletons = [...new Array(2)].map((_, i) => <Skeleton key={i} />);
-  const akcii = actions.map((action: any) => (
-    <AkciyaBlock key={action.id} {...action} />
-  ));
+
+  const akcii = findCategory?.id
+    ? actions.filter(action => action.categories.includes(findCategory.id)).map((action: any) => (
+      <AkciyaBlock key={action.id} {...action} />
+    )) : actions.map((action: any) => (
+      <AkciyaBlock key={action.id} {...action} />
+    ));
 
   return (
     <>
-      <Header/>
+      <Header />
       <Categories />
       <section className="main__container">
         {actions.length ? (
@@ -34,16 +39,4 @@ export default function Category() {
       <Footer />
     </>
   );
-}
-
-export async function loader({ params }: any) {
-  const actions = await getAllActions();
-
-  if (!actions) {
-    throw new Response("", {
-      status: 404,
-      statusText: "Нет акций в категории",
-    });
-  }
-  return actions;
 }

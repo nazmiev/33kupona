@@ -1,15 +1,14 @@
 import { ScrollRestoration, useLoaderData, useNavigation } from "react-router-dom";
-import { getAllActions } from "../api";
 import AkciyaBlock from "../components/AkciyaBlock";
 import Skeleton from "../components/AkciyaBlock/skeleton";
-import ActionType from "../assets/types/ActionType";
 import Header from "../components/Header";
 import Categories from "../components/Categories";
 import Footer from "../components/Footer";
+import { useAppStore } from "../context/AppStoreProvider";
 
 export default function Index() {
   const navigation = useNavigation();
-  const actions = useLoaderData() as ActionType[];
+  const { actions } = useAppStore();
 
   const skeletons = [...new Array(4)].map((_, i) => <Skeleton key={i} />);
   const akcii = actions.map((action: any) => (
@@ -19,7 +18,7 @@ export default function Index() {
   return (
     <>
       <Header />
-      <Categories />
+      <Categories/>
       <ScrollRestoration />
       <div className="main__container">
         {actions.length ? (
@@ -35,16 +34,4 @@ export default function Index() {
       <Footer />
     </>
   );
-}
-
-export async function loader() {
-  const actions = await getAllActions();
-
-  if (!actions) {
-    throw new Response("", {
-      status: 404,
-      statusText: "Нет акций",
-    });
-  }
-  return actions;
 }

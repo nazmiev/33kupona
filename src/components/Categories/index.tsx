@@ -1,44 +1,36 @@
 import styles from "./categories.module.scss";
 import { NavLink } from "react-router-dom";
+import { useAppStore } from "../../context/AppStoreProvider";
 
 export default function Categories() {
-  const items = [
-    { id: 0, title: "Свежее", url: "" },
-    { id: 7, title: "💅 Красота", url: "beauty" },
-    { id: 6, title: "🚗 Авто", url: "auto" },
-    { id: 3, title: "🍕 Еда", url: "food" },
-    { id: 10, title: "🚌 Здоровье", url: "holiday" },
-    { id: 13, title: "🎄 Новый год", url: "noviy_god" },
-    { id: 14, title: "❤ 14 февраля", url: "podarki_k_14_fevralya" },
-    { id: 25, title: "1 сентября 📚", url: "1sentyabrya" },
-    { id: 11, title: "🌹 8 Марта", url: "march" },
-    { id: 2, title: "🕺 Развлечения", url: "leisure" },
-    { id: 5, title: "🎁 Товары", url: "products" },
-  ];
+  const { categories } = useAppStore();
 
   return (
     <div>
       <nav className={styles.nav}>
-        {items.length ? (
-          <ul>
-            {items.map((item) => (
-              <li key={item.id}>
+        <ul>
+          <li key={0}>
+            <NavLink
+              to={"/"}
+              className={({ isActive, isPending }) =>
+                isPending ? styles.pending : isActive ? styles.active : ""}>
+              Свежее
+            </NavLink>
+          </li>
+          {categories?.length &&
+            categories.map((category: any) => (
+              <li key={category.id}>
                 <NavLink
-                  to={item.id > 0 ? `/c/${item.id}` : "/"}
+                  to={category.id > 0 ? `/c/${category.url_name}` : "/"}
                   className={({ isActive, isPending }) =>
                     isPending ? styles.pending : isActive ? styles.active : ""
                   }
                 >
-                  {item.title}
+                  {category.name} ({category.item_count})
                 </NavLink>
               </li>
             ))}
-          </ul>
-        ) : (
-          <p>
-            <i>нет категорий</i>
-          </p>
-        )}
+        </ul>
       </nav>
     </div>
   );

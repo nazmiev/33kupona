@@ -6,4 +6,5 @@ export default interface ActionType {
     price: number;
     partnerUrl: string;
     category: number;
+    categories: string[];
   }

@@ -64,13 +64,9 @@ export default function ActionPage(action: any) {
                       isPending ? styles.pending : isActive ? styles.active : ""
                     }
                   >Отзывы ({action.action.comment_count ? action.action.comment_count : 0})</NavLink>
-                  {/* <Link to="/">Отзывы ({action.action.comment_count ? action.action.comment_count : 0})</Link> */}
                 </div>
               </div>
               <button onClick={() => setOpenPayModal(true)}>Купить</button>
-              {/* <NavLink to={`/refine/${action.action.id}`}>
-                <button>Купить</button>
-              </NavLink> */}
             </div>
           </div>
         </div>

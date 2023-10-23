@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/error-page";
 import Root from "./routes/root";
-import Index, { loader as indexLoader } from "./routes/index";
-import Category, { loader as categoryLoader } from "./routes/category";
+import Index from "./routes/index";
+import Category from "./routes/category";
 import Action, { loader as actionLoader } from "./routes/action";
 import Comments, { loader as commentsLoader } from "./routes/comments";
 import Description, { loader as descriptionLoader } from "./routes/description";
@@ -28,7 +28,6 @@ export default function App() {
                 {
                     index: true,
                     element: <Index />,
-                    loader: indexLoader,
                 },
                 {
                     path: "refine/:action_id",
@@ -52,9 +51,8 @@ export default function App() {
                     element: <MyActions />,
                 },
                 {
-                    path: "c/:category_id",
+                    path: "c/:category_url",
                     element: <Category />,
-                    loader: categoryLoader,
                 },
                 {
                     path: "auth",
