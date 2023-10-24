@@ -12,7 +12,7 @@ export async function getAction(url: string) {
 }
 
 export async function getComments(url: string) {
-  let response = await fetch('https://33kupona.ru/tomsk/${url}/comment?' + params);
+  let response = await fetch(`https://33kupona.ru/tomsk/${url}/comment?` + params);
   let json = await response.json();
   return json.comments ?? [];
 }
@@ -130,7 +130,6 @@ export async function getUser() {
 }
 
 export async function getProfile() {
-  console.log('https://33kupona.ru/profile?' + params);
   let response = await fetch('https://33kupona.ru/profile?' + params);
   let json = await response?.json();
   return json;

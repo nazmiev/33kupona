@@ -11,7 +11,6 @@ export default function ProfileBlock() {
     (async () => {
       await getProfile().then(response => {
         setProfileData(response.profile)
-        console.log('response.profile: ', response.profile);
       });
     })();
   },[])

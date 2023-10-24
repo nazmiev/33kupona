@@ -1,6 +1,7 @@
 import styles from "./DescriptionBlock.module.scss";
 
 export default function DescriptionBlock({ action }: any) {
+  if (!action) return <h1>Loading</h1>
   return (
     <div className={`description__container ${styles.description}`}>
       <article>

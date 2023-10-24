@@ -54,7 +54,7 @@ export default function PayModal({ action, openPayModal, setOpenPayModal }: PayM
             <div className={step === 3 ? `${styles.active} ${styles.step}` : styles.step}>Оплата</div>
             <div className={styles.step}>Готово!</div>
           </div>
-          {step === 1 && <OffersList action_id={action.action.id} onSuccess={step1success} />}
+          {step === 1 && <OffersList action_id={action.id} onSuccess={step1success} />}
           {step === 2 && <AuthBlock onSuccess={step2success} />}
           {step === 3 && <OrdersBlock counts={counts} />}
         </div>
