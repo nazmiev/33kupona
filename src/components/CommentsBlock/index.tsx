@@ -6,22 +6,21 @@ import { useParams } from "react-router-dom";
 
 export default function CommentsBlock() {
   const [comments, setComments] = useState([]);
-  const {partner_url, action_id} = useParams();
+  const { partner_url, action_id } = useParams();
 
   useEffect(() => {
     (async () => {
       await getComments(`${partner_url}/${action_id}`)
-      .then((response) => {setComments(response)})})();
+        .then((response) => { setComments(response) })
+    })();
   }, []);
-   
+
   return (
-    <>
-      <div>
-        {/* <CommentForm /> */}
-        <div className={styles.comments}>
-          {comments.map((comment: any) => <Comment key={comment.id} comment={comment} depth={0} />)}
-        </div>
+    <div className={styles.comments_container}>
+      {/* <CommentForm /> */}
+      <div className={styles.comments}>
+        {comments.map((comment: any) => <Comment key={comment.id} comment={comment} depth={0} />)}
       </div>
-    </>
+    </div>
   );
 }

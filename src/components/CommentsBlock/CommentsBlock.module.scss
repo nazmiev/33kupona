@@ -1,7 +1,11 @@
-.comments {
-  margin: 0 auto;
-  max-width: calc(min(920px, 100%));
-  box-sizing: border-box;
-  margin: 0 auto;
-  padding: 0 10px;
+.comments_container {
+  flex-grow: 1;
+
+  .comments {
+    margin: 0 auto;
+    max-width: calc(min(920px, 100%));
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
 }

@@ -15,6 +15,8 @@ export type AppStoreType = {
   setActions: Function;
   categories: CategoryType[];
   setCategories: Function;
+  loading: boolean;
+  setLoading: Function;
 }
 
 export type CategoryType = {

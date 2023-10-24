@@ -10,12 +10,15 @@ const AppStore = createContext<AppStoreType>({
   setActions: () => { },
   categories: [],  
   setCategories: () => { },
+  loading: true,
+  setLoading: () => { },
 });
 
 export default function AppStoreProvider({ children }: any) {
   const [user, setUser] = useState<User | null>(null);
   const [actions, setActions] = useState<ActionType[]>([]);
   const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const value = {
     user,
@@ -23,7 +26,9 @@ export default function AppStoreProvider({ children }: any) {
     actions,
     setActions,
     categories,
-    setCategories
+    setCategories,
+    loading,
+    setLoading
   }
 
   return (

@@ -5,7 +5,7 @@ import { useAppStore } from "../context/AppStoreProvider";
 import { CategoryType } from "../context/types";
 
 export default function Root() {
-  const { setUser, setActions, setCategories } = useAppStore();
+  const { setUser, setActions, setCategories, setLoading } = useAppStore();
 
   useEffect(() => {
     (async () => {
@@ -28,6 +28,7 @@ export default function Root() {
             return 0;
           });
           setCategories(json);
+          setLoading(false);
         }
       });
     })();

@@ -8,7 +8,7 @@ import { useAppStore } from "../context/AppStoreProvider";
 
 export default function Category() {
   const navigation = useNavigation();
-  const { actions, categories } = useAppStore();
+  const { actions, categories, loading } = useAppStore();
   let { category_url } = useParams();
   const findCategory = categories.find(c => c.url_name === category_url);
 
@@ -27,7 +27,7 @@ export default function Category() {
       <Categories />
       <section className="main__container">
         {actions.length ? (
-          navigation.state === "loading" ? (
+          loading ? (
             skeletons
           ) : (
             akcii

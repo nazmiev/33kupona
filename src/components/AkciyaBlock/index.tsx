@@ -18,7 +18,11 @@ function AkciyaBlock({ name, image_big, url, coupon_sold, comment_count, discoun
   return (
     <section className={styles.AkciyaBlock} onClick={() => {navigate(url)}}>
       <div className={styles.imgContainer}>
-          <img src={image_big} alt={name} loading="lazy"/>
+          <picture>
+            {/* <source srcSet={image_big + '.webp'} type="image/webp"/> */}
+            <source srcSet={image_big} type="image/jpeg"/>
+            <img src={image_big} alt={name} loading="lazy"/>
+          </picture>
         <div className={styles.greenLabel}>
           <span>{discount}%</span>
         </div>
