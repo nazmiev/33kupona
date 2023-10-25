@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { AppStoreType, CategoryType, User } from "./types";
-import { createContext, useContext, useEffect } from "react";
-import ActionType from "../assets/types/ActionType";
+import { ReactElement, useState } from "react";
+import { ActionType, AppStoreType, CategoryType, User } from "./types";
+import { createContext, useContext } from "react";
 
 const AppStore = createContext<AppStoreType>({
   user: null,

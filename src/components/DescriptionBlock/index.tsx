@@ -1,6 +1,11 @@
+import { ActionType } from "../../context/types";
 import styles from "./DescriptionBlock.module.scss";
 
-export default function DescriptionBlock({ action }: any) {
+type Props = {
+  action: ActionType;
+}
+
+export default function DescriptionBlock({ action }: Props) {
   if (!action) return <h1>Loading</h1>
   return (
     <div className={`description__container ${styles.description}`}>

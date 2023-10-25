@@ -1,8 +1,13 @@
 import styles from "./OrdersBlock.module.scss";
 import { createInvoice, createPayment } from "../../api";
 import { useEffect, useState } from "react";
+import { CountsType } from "../../context/types";
 
-export default function OrdersBlock({ counts }: any) {
+type OrdersBlockProps = {
+  counts: CountsType | never[]
+}
+
+export default function OrdersBlock({ counts }: OrdersBlockProps) {
   const [orders, setOrders] = useState([]);
   const [invoiceId, setInvoiceId] = useState(0);
 

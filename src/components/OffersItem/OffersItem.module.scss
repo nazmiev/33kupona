@@ -2,8 +2,13 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-bottom: 2vh;
+  padding: 2vh 0;
+  border-bottom: 1px solid #eee;
   gap: 2vh;
+
+  &:last-child {
+    border-bottom: none;
+  }
 
   .offersListItemOrder {
     justify-content: center;
@@ -14,16 +19,26 @@
       display: flex;
       column-gap: 0.2vw;
       align-items: center;
-      border: 1px solid gray;
-      border-radius: 5px;
 
-      svg {
-        cursor: pointer;
+      button {
+        padding: 0;
+        border: none;
+        background-color: #fff;
+
+        &.active {
+          cursor: pointer;
+
+          svg {
+            color: #16ba2d;
+          }
+        }
+
+        &:disabled {
+          cursor: default
+        }
       }
 
-      .active {
-        color: #16ba2d;
-      }
+
     }
 
     .description {

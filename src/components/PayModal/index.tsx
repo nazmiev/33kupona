@@ -4,9 +4,10 @@ import { useAppStore } from "../../context/AppStoreProvider";
 import OffersList from "../OffersList";
 import OrdersBlock from "../OrdersBlock";
 import AuthBlock from "../AuthBlock";
+import { ActionType, CountsType } from "../../context/types";
 
 interface PayModalProps {
-  action: any;
+  action: ActionType;
   openPayModal: boolean;
   setOpenPayModal: Dispatch<SetStateAction<boolean>>;
 }
@@ -14,7 +15,7 @@ interface PayModalProps {
 export default function PayModal({ action, openPayModal, setOpenPayModal }: PayModalProps) {
   const { user } = useAppStore();
   const [step, setStep] = useState(1);
-  const [counts, setCounts] = useState([]);
+  const [counts, setCounts] = useState<CountsType | never[]>([]);
 
   const step1success = (result: any) => {
     setCounts(result);
@@ -30,7 +31,7 @@ export default function PayModal({ action, openPayModal, setOpenPayModal }: PayM
   }
 
   return (
-    <section className={styles.pay_backdrop} onClick={() => setOpenPayModal(false)}>
+    <section className={`pay_backdrop ${styles.pay_backdrop}`} onClick={() => setOpenPayModal(false)}>
       <article className={styles.pay_modal} onClick={(e) => e.stopPropagation()}>
         <div className={`offers__container ${styles.offers}`}>
           <div className={styles.header}>

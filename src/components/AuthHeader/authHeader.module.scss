@@ -8,6 +8,11 @@
   font-size: 16px;
   padding: 1vh 2vw;
   gap: calc(min(3vw,12px));
+
+  svg {
+    color: #888;
+    cursor: pointer;
+  }
 }
 
 .item {
@@ -19,11 +24,6 @@
   box-shadow: 0 1px 4px -1px #999;
   text-decoration: none;
   color: #333;
-}
-
-svg {
-  color: #888;
-  cursor: pointer;
 }
 
 .active {

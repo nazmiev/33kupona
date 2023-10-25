@@ -3,6 +3,7 @@ import Comment from "./Comment";
 import styles from "./CommentsBlock.module.scss";
 import { getComments } from "../../api";
 import { useParams } from "react-router-dom";
+import { CommentType } from "../../context/types";
 
 export default function CommentsBlock() {
   const [comments, setComments] = useState([]);
@@ -19,7 +20,7 @@ export default function CommentsBlock() {
     <div className={styles.comments_container}>
       {/* <CommentForm /> */}
       <div className={styles.comments}>
-        {comments.map((comment: any) => <Comment key={comment.id} comment={comment} depth={0} />)}
+        {comments.map((comment: CommentType) => <Comment key={comment.id} comment={comment} depth={0} />)}
       </div>
     </div>
   );

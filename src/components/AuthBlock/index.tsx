@@ -3,7 +3,9 @@ import { useState } from "react";
 import LoginBlock from "../LoginBlock";
 import RegisterBlock from "../RegisterBlock";
 
-export default function AuthBlock({ onSuccess }: any) {
+type Props = { onSuccess: () => void }
+
+export default function AuthBlock({ onSuccess }: Props) {
   const [authType, setAuthType] = useState('login');
 
   return (

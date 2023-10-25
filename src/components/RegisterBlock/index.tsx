@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import { getUser, postRegister } from "../../api";
 import { useAppStore } from "../../context/AppStoreProvider";
 
-export default function RegisterBlock({ onSuccess }: any) {
+type Props = { onSuccess: () => void }
+
+export default function RegisterBlock({ onSuccess }: Props) {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);

@@ -1,7 +1,9 @@
 import styles from "./ForgetPasswordBlock.module.scss";
 import { useState } from "react";
 
-export default function ForgetPasswordBlock({ onSuccess }: any) {
+type Props = { onSuccess: () => void }
+
+export default function ForgetPasswordBlock({ onSuccess }: Props) {
   const [login, setLogin] = useState("");
 
   function handleForgetPasswordBlockSubmit(e: any) {

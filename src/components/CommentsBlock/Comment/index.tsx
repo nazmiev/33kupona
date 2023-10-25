@@ -1,6 +1,12 @@
+import { CommentType } from "../../../context/types";
 import styles from "./Comment.module.scss";
 
-export default function Comment({ comment, depth }: any) {
+type Props = {
+  comment: CommentType;
+  depth: number;
+}
+
+export default function Comment({ comment, depth }: Props) {
   const commentNoAvatarColors = ['#DD48A2','#4785DC','#EFD428','#1DBB2F','#3A3A3A'];
 
   return (
@@ -29,7 +35,7 @@ export default function Comment({ comment, depth }: any) {
 
       {comment.comments.length ? (
         <div className={styles.children}>
-          {comment.comments.map((comment: any) => <Comment key={comment.id} comment={comment} depth={1 + depth} />)}
+          {comment.comments.map((comment: CommentType) => <Comment key={comment.id} comment={comment} depth={1 + depth} />)}
         </div>
       ): <></>}
     </div>

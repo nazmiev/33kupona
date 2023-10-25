@@ -1,6 +1,7 @@
 import styles from "./categories.module.scss";
 import { NavLink } from "react-router-dom";
 import { useAppStore } from "../../context/AppStoreProvider";
+import { CategoryType } from "../../context/types";
 
 export default function Categories() {
   const { categories } = useAppStore();
@@ -18,10 +19,10 @@ export default function Categories() {
             </NavLink>
           </li>
           {categories?.length &&
-            categories.map((category: any) => (
+            categories.map((category: CategoryType) => (
               <li key={category.id}>
                 <NavLink
-                  to={category.id > 0 ? `/c/${category.url_name}` : "/"}
+                  to={parseInt(category.id) > 0 ? `/c/${category.url_name}` : "/"}
                   className={({ isActive, isPending }) =>
                     isPending ? styles.pending : isActive ? styles.active : ""
                   }

@@ -3,7 +3,9 @@ import { useState } from "react";
 import { getUser, postAuth, postRegister } from "../../api";
 import { useAppStore } from "../../context/AppStoreProvider";
 
-export default function LoginBlock({ onSuccess }: any) {
+type Props = { onSuccess: () => void }
+
+export default function LoginBlock({ onSuccess }: Props) {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);

@@ -3,11 +3,12 @@ import styles from "./OffersList.module.scss";
 import { useEffect, useState } from "react";
 import { getOffers } from "../../api";
 import OffersItem from "../OffersItem";
+import { CountsType } from "../../context/types";
 
 export default function OffersList({ action_id, onSuccess }: any) {
   const [offers, setOffers] = useState([]);
 
-  const initialCounters = offers.map((el: any) => {
+  const initialCounters = offers.map((el: CountsType) => {
     return (el = { ...el, sum: el.price * el.count });
   });
   const [counts, setCounts] = useState(initialCounters);
@@ -22,14 +23,14 @@ export default function OffersList({ action_id, onSuccess }: any) {
   }, [])
 
   const minus = (id: number) => {
-    const updatedCounts = counts.map((el: any) =>
+    const updatedCounts = counts.map((el: CountsType) =>
       el.id === id ? { ...el, count: el.count - 1, sum: el.price * (el.count - 1) } : el
     );
     setCounts(updatedCounts);
   };
 
   const plus = (id: number) => {
-    const updatedCounts = counts.map((el: any) =>
+    const updatedCounts = counts.map((el: CountsType) =>
       el.id === id ? { ...el, count: el.count + 1, sum: el.price * (el.count + 1) } : el
     );
     setCounts(updatedCounts);
@@ -41,10 +42,9 @@ export default function OffersList({ action_id, onSuccess }: any) {
 
   return (
     <div className={styles.step1}>
-      <p>Выберите необходимое количество купонов</p>
       {counts.length ? (
         <div className={styles.offersList}>
-          {counts.map((offer: any) => (
+          {counts.map((offer: CountsType) => (
             < OffersItem key={offer.id} offer={offer} minus={minus} plus={plus} />
           ))}
         </div>
@@ -57,12 +57,11 @@ export default function OffersList({ action_id, onSuccess }: any) {
         <p className={styles.disclaimer}>
           Совершая покупки товаров и услуг на сайте 33 Купона я ознакомился с
           Пользовательским Соглашением, размещенным в постоянном публичном
-          доступе на сайте по адресу
-          <Link to="/disclaimer">33kupona.ru/disclaimer</Link> и безоговорочно
+          доступе на сайте по адресу <Link to="/disclaimer">33kupona.ru/disclaimer</Link> и безоговорочно
           принимаю все его условия
         </p>
         <button
-          disabled={counts.reduce(function (acc: number, obj: any) { return acc + obj.sum }, 0) == 0}
+          disabled={counts.reduce(function (acc: number, obj: CountsType) { return acc + obj.sum }, 0) == 0}
           onClick={handleClick}
         >Продолжить</button>
       </div>
