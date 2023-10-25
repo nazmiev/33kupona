@@ -55,7 +55,7 @@ export default function App() {
                     children: [
                         {
                             path: ":partner_url/:action_id",
-                            element: <ActionPage />,
+                            element: <ActionPage comment={false}/>,
                         },
                         {
                             path: ":partner_url/:action_id/comment",

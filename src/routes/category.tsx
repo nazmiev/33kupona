@@ -7,7 +7,6 @@ import Footer from "../components/Footer";
 import { useAppStore } from "../context/AppStoreProvider";
 
 export default function Category() {
-  const navigation = useNavigation();
   const { actions, categories, loading } = useAppStore();
   let { category_url } = useParams();
   const findCategory = categories.find(c => c.url_name === category_url);

@@ -5,7 +5,12 @@ import { getOffers } from "../../api";
 import OffersItem from "../OffersItem";
 import { CountsType } from "../../context/types";
 
-export default function OffersList({ action_id, onSuccess }: any) {
+type OffersListProps = { 
+  action_id: number;
+  onSuccess: (result: any) => void;
+}
+
+export default function OffersList({ action_id, onSuccess }: OffersListProps) {
   const [offers, setOffers] = useState([]);
 
   const initialCounters = offers.map((el: CountsType) => {

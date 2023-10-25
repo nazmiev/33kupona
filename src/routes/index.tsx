@@ -20,15 +20,12 @@ export default function Index() {
       <Categories/>
       <ScrollRestoration />
       <div className="main__container">
-        {actions.length ? (
-          loading ? (
+        {loading ? (
             skeletons
           ) : (
             akcii
           )
-        ) : (
-          <h1>Загрузка...</h1>
-        )}
+        }
       </div>
       <Footer />
     </>

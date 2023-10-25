@@ -1,5 +1,5 @@
 import styles from "./PayModal.module.scss";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useAppStore } from "../../context/AppStoreProvider";
 import OffersList from "../OffersList";
 import OrdersBlock from "../OrdersBlock";
@@ -8,11 +8,10 @@ import { ActionType, CountsType } from "../../context/types";
 
 interface PayModalProps {
   action: ActionType;
-  openPayModal: boolean;
   setOpenPayModal: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function PayModal({ action, openPayModal, setOpenPayModal }: PayModalProps) {
+export default function PayModal({ action, setOpenPayModal }: PayModalProps) {
   const { user } = useAppStore();
   const [step, setStep] = useState(1);
   const [counts, setCounts] = useState<CountsType | never[]>([]);

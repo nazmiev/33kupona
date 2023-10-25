@@ -1,17 +1,22 @@
 import styles from "./action-page.module.scss";
 import { pluralizeRus, secondsToDh } from "../../utils";
-import { NavLink, Link, Outlet, ScrollRestoration } from "react-router-dom";
+import { NavLink, ScrollRestoration } from "react-router-dom";
 import Categories from "../../components/Categories";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { useEffect, useState } from "react";
 import PayModal from "../../components/PayModal";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useAppStore } from "../../context/AppStoreProvider";
 import CommentsBlock from "../../components/CommentsBlock";
 import DescriptionBlock from "../../components/DescriptionBlock";
+import { CommentType } from "../../context/types";
 
-export default function ActionPage({ comment }: any) {
+type ActionPageProps = {
+  comment: boolean
+}
+
+export default function ActionPage({ comment }: ActionPageProps) {
   const [openPayModal, setOpenPayModal] = useState(false);
   const [commentsOpen, setCommentsOpen] = useState(false);
   const { actions } = useAppStore();
@@ -103,7 +108,7 @@ export default function ActionPage({ comment }: any) {
       {!commentsOpen && <DescriptionBlock action={action} />}
       {commentsOpen && <CommentsBlock />}
       <Footer />
-      {openPayModal && <PayModal action={action} openPayModal={openPayModal} setOpenPayModal={setOpenPayModal}/>}
+      {openPayModal && <PayModal action={action} setOpenPayModal={setOpenPayModal}/>}
     </>
   );
 }

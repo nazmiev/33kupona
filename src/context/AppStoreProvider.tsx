@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { useState } from "react";
 import { ActionType, AppStoreType, CategoryType, User } from "./types";
 import { createContext, useContext } from "react";
 
