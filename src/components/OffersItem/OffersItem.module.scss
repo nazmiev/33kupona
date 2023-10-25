@@ -8,6 +8,7 @@
 
   &:last-child {
     border-bottom: none;
+    padding-bottom: calc(min(10vh,33px));
   }
 
   .offersListItemOrder {
