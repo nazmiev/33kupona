@@ -9,6 +9,7 @@
   &:last-child {
     border-bottom: none;
     padding-bottom: calc(min(8vh, 50px));
+    margin-bottom: calc(min(8vh, 50px));
   }
 
   .offersListItemOrder {
