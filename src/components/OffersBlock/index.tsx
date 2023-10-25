@@ -1,7 +1,6 @@
 import styles from "./OffersBlock.module.scss";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { createInvoice } from "../../api";
 import { useAppStore } from "../../context/AppStoreProvider";
 import LoginBlock from "../AuthBlock";
 

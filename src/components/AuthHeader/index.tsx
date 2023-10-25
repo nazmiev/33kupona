@@ -21,7 +21,7 @@ export default function AuthHeader () {
       }>Забыли пароль?</NavLink>
       <svg
         className={styles.close}
-        onClick={() => { navigate(-1) }}
+        onClick={() => { navigate('/') }}
         xmlns="http://www.w3.org/2000/svg"
         width="25"
         height="25"

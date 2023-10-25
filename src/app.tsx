@@ -4,9 +4,6 @@ import Root from "./routes/root";
 import Index from "./routes/index";
 import Category from "./routes/category";
 import Auth from "./routes/auth";
-import Login from "./routes/login";
-import Register from "./routes/register";
-import ForgetPassword from "./routes/forget-password";
 import Profile from "./routes/profile";
 import Coupons from "./routes/coupons";
 import MyActions from "./routes/myactions";
@@ -42,13 +39,16 @@ export default function App() {
                     element: <Category />,
                 },
                 {
-                    path: "auth",
-                    element: <Auth/>,
-                    children: [
-                        { path: "login", element: <Login />, },
-                        { path: "register", element: <Register />, },
-                        { path: "forget_password", element: <ForgetPassword />, },
-                    ]
+                    path: "auth/login",
+                    element: <Auth authType={'login'}/>,
+                },
+                {
+                    path: "auth/register",
+                    element: <Auth authType={'register'}/>,
+                },
+                {
+                    path: "auth/forget_password",
+                    element: <Auth authType={'forget_password'}/>,
                 },
                 {
                     path: "tomsk/",
