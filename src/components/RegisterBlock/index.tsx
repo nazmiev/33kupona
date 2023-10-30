@@ -61,7 +61,7 @@ export default function RegisterBlock({ onSuccess }: Props) {
           checked={remember}
           onChange={(e) => setRemember(e.target.checked)}
         />
-        <label htmlFor="myCheckbox">Я согласен с <Link to="disclaimer">правилами</Link></label>
+        <label htmlFor="myCheckbox">Я согласен с <Link to="/agreement">правилами</Link></label>
       </div>
       {login && login === password && (<h4>Пароль не должен совпадать с логином</h4>)}
       <button disabled={!(login && password) || (login === password)} type="submit">

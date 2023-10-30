@@ -62,7 +62,7 @@ export default function OffersList({ action_id, onSuccess }: OffersListProps) {
         <p className={styles.disclaimer}>
           Совершая покупки товаров и услуг на сайте 33 Купона я ознакомился с
           Пользовательским Соглашением, размещенным в постоянном публичном
-          доступе на сайте по адресу <Link to="/disclaimer">33kupona.ru/disclaimer</Link> и безоговорочно
+          доступе на сайте по адресу <Link to="/agreement">33kupona.ru/agreement</Link> и безоговорочно
           принимаю все его условия
         </p>
         <button

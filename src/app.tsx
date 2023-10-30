@@ -9,6 +9,7 @@ import Coupons from "./routes/coupons";
 import MyActions from "./routes/myactions";
 import ActionPage from "./pages/Action";
 import Past from "./routes/past";
+import Agreement from "./routes/agreement";
 
 const baseName = import.meta.env.BASE_URL;
 
@@ -30,6 +31,10 @@ export default function App() {
                 {
                     path: "/past",
                     element: <Past />,
+                },
+                {
+                    path: "/agreement",
+                    element: <Agreement />,
                 },
                 {
                     path: "/coupons",

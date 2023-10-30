@@ -17,7 +17,7 @@ export default function Past() {
       (entries) => {
         const first = entries[0];
         if (first.isIntersecting) {
-          setPageNum((no) => no + 1);
+          setPageNum((prev) => prev + 1);
         }
       })
   );
