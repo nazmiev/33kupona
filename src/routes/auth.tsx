@@ -6,7 +6,6 @@ import ForgetPasswordBlock from "../components/ForgetPasswordBlock";
 import { useNavigate } from "react-router-dom";
 
 export default function Auth({ authType }: {authType: string}) {
-  console.log('authType: ', authType);
   const navigate = useNavigate();
   const onSuccess = () => {
     navigate('/')

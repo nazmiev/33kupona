@@ -29,6 +29,16 @@ export async function getAllActions() {
   return json;
 }
 
+export async function getPastActions(page: number) {
+  const params = new URLSearchParams({
+    page: ''+ page,
+    format: 'json'
+  })
+  let response = await fetch('https://33kupona.ru/past?' + params);
+  let json = await response.json();
+  return json;
+}
+
 export async function getOffers(action_id: number) {
   const params = new URLSearchParams({
     action_id: ''+ action_id,
@@ -120,6 +130,20 @@ export async function postRegister(email: string, password: string, agreement_co
   if (json.error) {
     // alert(Object.values(json.error).join("\n"));
   }
+  return json;
+}
+
+export async function postForget(email: string ) {
+  const data: any = {
+    'obj[email]': email,
+    format: 'json',
+  };
+  let response = await fetch('https://33kupona.ru/forget_password', {
+    method: "POST",
+    body: new URLSearchParams(data),
+  });
+  let json = await response?.json();
+
   return json;
 }
 
