@@ -135,15 +135,15 @@ export async function postRegister(email: string, password: string, agreement_co
 
 export async function postForget(email: string ) {
   const data: any = {
-    'obj[email]': email,
+    email: email,
     format: 'json',
+    send: 1,
   };
   let response = await fetch('https://33kupona.ru/forget_password', {
     method: "POST",
     body: new URLSearchParams(data),
   });
   let json = await response?.json();
-
   return json;
 }
 
