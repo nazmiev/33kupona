@@ -159,6 +159,12 @@ export async function getProfile() {
   return json;
 }
 
+export async function getMyCoupons() {
+  let response = await fetch('https://33kupona.ru/profile/coupon?' + params);
+  let json = await response?.json();
+  return json;
+}
+
 export async function LogOut() {
   sessionStorage.setItem('vrb', '');
   params.delete('access_token');

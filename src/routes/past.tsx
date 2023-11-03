@@ -23,7 +23,6 @@ export default function Past() {
   );
 
   useEffect(() => {
-    setLoading(true);
     (async () => {
       await getPastActions(pageNum).then(response => {
         let all = new Set([...actions, ...response.actions]);

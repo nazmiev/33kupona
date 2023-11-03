@@ -1,0 +1,67 @@
+.CouponBlock {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin: 20px;
+  padding: 10px; //do calc
+  background-color: #eeeeee33;
+
+  .couponActionTitle {
+    font: normal 21px 'Open Sans', sans-serif;
+    margin-bottom: 10px;
+
+    a {
+      font-weight: bold;
+      color: #000;
+      text-decoration: none;
+    }
+  }
+
+  .couponOfferTitle {
+    font: normal 21px 'Open Sans', sans-serif;
+    margin-bottom: 10px;
+  }
+
+  .couponDetails {
+    font: bold 12px 'Open Sans', sans-serif;
+
+    .couponDate {
+      display: inline-block;
+      width: 33.33333333%; //do calc to 100%
+      vertical-align: top;
+    }
+
+    .couponCode {
+      text-align: center;
+      font: bold 28px 'Open Sans', sans-serif;
+      width: 100%;
+      padding: 10px 0;
+    }
+
+    .couponStatus {
+      display: inline-block;
+      width: 33.33333333%;
+      vertical-align: top;
+      width: 100%;
+      text-align: center;
+
+      .button {
+        display: inline-block;
+        padding: 0 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-shadow: 0 1px 1px #eee;
+        color: #888;
+        background: #fff;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 30px;
+        font-family: 'Open Sans', sans-serif;
+        text-decoration: none;
+        box-sizing: border-box;
+        cursor: pointer;
+        position: relative;
+        margin: 5px;
+      }
+    }
+  }
+}
